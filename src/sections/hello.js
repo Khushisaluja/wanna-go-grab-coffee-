@@ -168,6 +168,30 @@ function close() {
 
 /* any element with data-hello opens the dialog (links keep a mailto href as a no-js fallback) */
 export function wireHello() {
+  /* [data-copy-email]: copy the address, say "copied!" for a moment, announce it to screen readers */
+  let live = null;
+  document.addEventListener('click', async (e) => {
+    const c = e.target.closest('[data-copy-email]');
+    if (!c) return;
+    const addr = c.dataset.copyEmail;
+    const label = c.querySelector('[data-copy-label]') || c;
+    let ok = true;
+    try { await navigator.clipboard.writeText(addr); } catch {
+      /* clipboard api blocked (http, old browsers): fall back to a hidden textarea */
+      const ta = Object.assign(document.createElement('textarea'), { value: addr });
+      ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+      document.body.appendChild(ta); ta.select();
+      try { ok = document.execCommand('copy'); } catch { ok = false; }
+      ta.remove();
+    }
+    if (!live) { live = Object.assign(document.createElement('p'), { className: 'sr' }); live.setAttribute('aria-live', 'polite'); document.body.appendChild(live); }
+    live.textContent = ok ? `copied ${addr}` : `couldn't copy. the email is ${addr}`;
+    label.textContent = ok ? 'copied! ✓' : addr;
+    c.classList.toggle('is-copied', ok);
+    clearTimeout(c._t);
+    c._t = setTimeout(() => { label.textContent = 'copy email'; c.classList.remove('is-copied'); }, ok ? 2000 : 6000);
+  });
+
   document.addEventListener('click', (e) => {
     const t = e.target.closest('[data-hello]');
     if (!t) return;

@@ -21,8 +21,11 @@ export function build(el) {
       <div class="outro-actions">
         <a class="btn outro-hi" href="mailto:${esc(ME.email)}" data-hello aria-haspopup="dialog">
           <span class="outro-hi-say">say hi</span>
-          <span class="outro-hi-mail">${esc(ME.email)}</span>
         </a>
+        <button type="button" class="btn btn--light outro-link outro-copy" data-copy-email="${esc(ME.email)}">
+          <svg class="outro-copy-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8 V 6 a 2 2 0 0 0 -2 -2 H 6 a 2 2 0 0 0 -2 2 v 8 a 2 2 0 0 0 2 2 h 2"/></svg>
+          <span class="outro-copy-label" data-copy-label>copy email</span>
+        </button>
         <a class="btn btn--light outro-link" href="${esc(ME.linkedin)}" target="_blank" rel="noreferrer">linkedin <span aria-hidden="true">↗</span><span class="sr"> (opens in a new tab)</span></a>
         <a class="btn btn--light outro-link" href="${esc(ME.resume)}" target="_blank" rel="noreferrer">resume <span aria-hidden="true">↗</span><span class="sr"> (google drive, opens in a new tab)</span></a>
       </div>
