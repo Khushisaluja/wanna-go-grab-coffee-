@@ -20,9 +20,9 @@ export const INTRO = {
   line: 'i design apps and sites that feel *obvious* to use. mostly over coffee.',
   facts: [
     'ui/ux + product designer',
-    'engineering student @ thapar',
     '3 internships, 3 hackathon wins',
-    'looking for opportunities',
+    'looking for opportunities', // 3rd tag = the dark one (intro.css nth-child(3))
+    'engineering student @ thapar',
   ],
   bubble: 'shh, reading the news. (bad onboarding made the front page. again.)',
   tableDoodles: ['sticky note: “fix the onboarding”', 'pen', 'tiny sketchbook'],
