@@ -110,7 +110,9 @@ export function build(el) {
     /* the "say hi = refill" note: beside the cup if there's room before the polaroid, else under it, else hidden */
     note.style.visibility = '';
     const nw = note.offsetWidth || 170, nh = note.offsetHeight || 44;
-    const cupR = left + w * vis, cupB = top + h * vis;
+    /* the spot box is the cup's footprint; the drawing only spills sideways and up (steam), so the
+       note can tuck right under the box instead of under the padded size */
+    const cupR = left + w * vis, cupB = top + h * 0.98;
     if (cupR + 8 + nw < pol.l - 8) { note.style.left = `${Math.round(cupR + 8)}px`; note.style.top = `${Math.round(top + h * 0.55)}px`; }
     else if (cupB + nh < s.height - 8) { note.style.left = `${Math.round(left)}px`; note.style.top = `${Math.round(cupB)}px`; }
     else note.style.visibility = 'hidden';
