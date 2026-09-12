@@ -290,9 +290,9 @@ const OLD = {
   src: '/img/cox/old-hero.jpg',
   alt: 'the homepage khushi inherited: a centred headline, two competing calls to action, a plain-text phone number and a 4.8 rating badge with no source',
   marks: [
-    { c: [1012, 38, 94, 24], note: 'a phone number you can’t tap', at: [60.5, 11.5, 24], from: [930, 100], to: [990, 66] },
-    { c: [866, 652, 106, 32], note: 'explore now → no journeys found', at: [58, 60.5, 29], from: [860, 540], to: [868, 614] },
-    { c: [620, 756, 76, 22], note: '4.8… says who?', at: [27, 85.5, 17], from: [520, 700], to: [556, 742] },
+    { c: [1012, 38, 94, 24], note: 'a phone number you can’t tap (plain text, not clickable)', at: [60.5, 11.5, 24], from: [930, 100], to: [990, 66] },
+    { c: [866, 652, 106, 32], note: 'explore now → no journeys found (limited filter options)', at: [58, 60.5, 29], from: [860, 540], to: [868, 614] },
+    { c: [620, 756, 76, 22], note: '4.8… says who? (not clickable)', at: [27, 85.5, 17], from: [520, 700], to: [556, 742] },
   ],
 };
 const NEW = {
@@ -310,7 +310,7 @@ const OLD_M = {
   vb: '0 0 460 995',
   marks: [
     { c: [230, 48, 200, 34], note: 'no one to call up here', at: [20, 12, 64], from: [200, 128], to: [210, 88] },
-    { c: [230, 970, 88, 22], note: '4.8, says who?', at: [22, 84, 56], from: [230, 880], to: [230, 944] },
+    { c: [230, 970, 88, 22], note: '4.8, says who? (not clickable)', at: [22, 84, 56], from: [230, 880], to: [230, 944] },
   ],
 };
 const NEW_M = {

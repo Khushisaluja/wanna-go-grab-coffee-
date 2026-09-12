@@ -159,6 +159,8 @@
   /* leave room for the right-hand notes inside the viewport */
   .tally-sol--duo .tally-stage { right: calc(var(--gutter) + 150px); left: 34vw; }
   .tally-note--right .tally-note-text { width: 160px; }
+  /* notes above/below a phone have the width to spare; wider = fewer lines = clear of the header */
+  .tally-note--top .tally-note-text { width: 250px; }
 }
 
 /* ================================================================ end card */

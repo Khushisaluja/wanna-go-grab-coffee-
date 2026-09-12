@@ -229,7 +229,8 @@ const SOLS = {
     ],
     rot: [-3, 3.5], lift: [0, 34],
     notes: [
-      { s: 0, p: 0, side: 'left', ax: 24, ay: 14.7, shift: -54 },
+      // longer pointer (the sharma tea stall example): sits above the phone, clear of the body copy
+      { s: 0, p: 0, side: 'top', ax: 24, ay: 14.7, shift: 0 },
       { s: 0, p: 1, side: 'left', ax: 8, ay: 28.5, shift: 44 },
       { s: 1, p: 2, side: 'right', ax: 95, ay: 23.5, shift: -30 },
     ],
@@ -243,7 +244,7 @@ const SOLS = {
     ],
     rot: [-3, 0, 3], lift: [44, 8, -28],
     notes: [
-      { s: 0, p: 0, side: 'bottom', ax: 44, ay: 94, shift: -6 },
+      { s: 0, p: 0, side: 'bottom', ax: 44, ay: 94, shift: -64 }, // nudged left: clears the ₹25k note at 1280px
       { s: 2, p: 1, side: 'top', ax: 72, ay: 25.5, shift: 8 },
       { s: 1, p: 2, side: 'bottom', ax: 7, ay: 70, shift: 40 },
     ],
@@ -263,15 +264,15 @@ const SOLS = {
     ],
   },
   yours: {
-    screens: ['/img/tally/cs-home.png', '/img/tally/cs-arrange.png'],
+    screens: ['/img/tally/cs-ob3.png', '/img/tally/cs-home.png'],
     alts: [
-      'tally home as a stack of widgets: bank account, recents, pay, goals. a hint at the top says “hold a card to move or hide it”.',
-      'arrange mode on home. every widget has up and down arrows and a hide button, and a bar says “drag to move, hide what you don’t use”.',
+      'tally setup asks “what will you use tally for most? tap in the order you want them on your home”, with options: save for something, recharge and bills, split with friends, autopay and subscriptions, everyday payments.',
+      'the home screen that answer builds: a stack of widgets with the bank account, recents, pay and goals, and a hint at the top saying “hold a card to move or hide it”.',
     ],
     rot: [-3, 3], lift: [0, 30],
     notes: [
-      { s: 0, p: 0, side: 'top', ax: 12, ay: 15.6, shift: -30 },
-      { s: 1, p: 1, side: 'right', ax: 88, ay: 16.8, shift: 40 },
+      { s: 0, p: 0, side: 'top', ax: 30, ay: 13, shift: -20 },
+      { s: 1, p: 1, side: 'right', ax: 88, ay: 42, shift: 40 },
     ],
     aside: 2, // pointer with nothing to point at: a free hand note
   },
@@ -467,9 +468,10 @@ function layoutNotes(root) {
       c2 = [-10, dir * (r + 26)];
       const tip = [1, dir * (r + 3)];
       head = `M -9 ${dir * (r + 15)} L ${tip[0]} ${tip[1]} L 11 ${dir * (r + 13)}`;
+      const half = (txt.offsetWidth || 190) / 2; // centre on the real width (top/bottom notes are wider)
       Object.assign(txt.style, side === 'top'
-        ? { bottom: `${L + 6}px`, top: 'auto', left: `${sh - 95}px`, textAlign: 'center' }
-        : { top: `${L + 6}px`, bottom: 'auto', left: `${sh - 95}px`, textAlign: 'center' });
+        ? { bottom: `${L + 6}px`, top: 'auto', left: `${sh - half}px`, textAlign: 'center' }
+        : { top: `${L + 6}px`, bottom: 'auto', left: `${sh - half}px`, textAlign: 'center' });
       $('.tally-arrow-line', note).setAttribute('d', `M ${tail[0]} ${tail[1]} C ${c1[0]} ${c1[1]}, ${c2[0]} ${c2[1]}, ${tip[0]} ${tip[1]}`);
     }
     $('.tally-arrow-head', note).setAttribute('d', head);
