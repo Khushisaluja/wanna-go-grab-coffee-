@@ -175,6 +175,7 @@ export function wireHello() {
     if (!c) return;
     const addr = c.dataset.copyEmail;
     const label = c.querySelector('[data-copy-label]') || c;
+    if (label.dataset.idle == null) label.dataset.idle = label.textContent; // restore whatever the button said
     let ok = true;
     try { await navigator.clipboard.writeText(addr); } catch {
       /* clipboard api blocked (http, old browsers): fall back to a hidden textarea */
@@ -189,7 +190,7 @@ export function wireHello() {
     label.textContent = ok ? 'copied! ✓' : addr;
     c.classList.toggle('is-copied', ok);
     clearTimeout(c._t);
-    c._t = setTimeout(() => { label.textContent = 'copy email'; c.classList.remove('is-copied'); }, ok ? 2000 : 6000);
+    c._t = setTimeout(() => { label.textContent = label.dataset.idle; c.classList.remove('is-copied'); }, ok ? 2000 : 6000);
   });
 
   document.addEventListener('click', (e) => {

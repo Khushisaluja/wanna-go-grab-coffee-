@@ -22,12 +22,14 @@ export function build(el) {
         <a class="btn outro-hi" href="mailto:${esc(ME.email)}" data-hello aria-haspopup="dialog">
           <span class="outro-hi-say">say hi</span>
         </a>
-        <button type="button" class="btn btn--light outro-link outro-copybtn" data-copy-email="${esc(ME.email)}">
+        <button type="button" class="btn btn--light outro-link outro-copybtn" data-copy-email="${esc(ME.email)}" aria-label="copy email address ${esc(ME.email)}">
           <svg class="outro-copy-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8 V 6 a 2 2 0 0 0 -2 -2 H 6 a 2 2 0 0 0 -2 2 v 8 a 2 2 0 0 0 2 2 h 2"/></svg>
-          <span class="outro-copy-label" data-copy-label>copy email</span>
+          <span class="outro-copy-label" data-copy-label>${esc(ME.email)}</span>
         </button>
-        <a class="btn btn--light outro-link" href="${esc(ME.linkedin)}" target="_blank" rel="noreferrer">linkedin <span aria-hidden="true">↗</span><span class="sr"> (opens in a new tab)</span></a>
-        <a class="btn btn--light outro-link" href="${esc(ME.resume)}" target="_blank" rel="noreferrer">resume <span aria-hidden="true">↗</span><span class="sr"> (google drive, opens in a new tab)</span></a>
+        <div class="outro-links">
+          <a class="btn btn--light outro-link" href="${esc(ME.linkedin)}" target="_blank" rel="noreferrer">linkedin <span aria-hidden="true">↗</span><span class="sr"> (opens in a new tab)</span></a>
+          <a class="btn btn--light outro-link" href="${esc(ME.resume)}" target="_blank" rel="noreferrer">resume <span aria-hidden="true">↗</span><span class="sr"> (google drive, opens in a new tab)</span></a>
+        </div>
       </div>
       <p class="outro-also">${esc(OUTRO.also)}</p>
     </div>
@@ -68,6 +70,63 @@ export function build(el) {
   hi.addEventListener('mouseleave', off);
   hi.addEventListener('focus', on);
   hi.addEventListener('blur', off);
+
+  /* where the empty cup lands depends on how tall the title and how wide the button row render,
+     so measure instead of guessing vh. cup.js reads .outro-cupspot's rect every frame, so moving
+     the spot is enough. phones and the stacked layout keep their css. */
+  const place = () => {
+    const spot = $('.outro-cupspot', el), note = $('.outro-refill', el), scene = $('.outro-scene', el);
+    const clear = () => { spot.style.left = spot.style.top = ''; note.style.left = note.style.top = ''; note.style.visibility = ''; };
+    if (isStatic() || matchMedia('(max-width: 860px) and (orientation: portrait)').matches) { clear(); return; }
+    const s = scene.getBoundingClientRect();
+    const rel = (e) => { const r = e.getBoundingClientRect(); return { l: r.left - s.left, t: r.top - s.top, r: r.right - s.left, b: r.bottom - s.top, w: r.width, h: r.height }; };
+    /* row 1 = say hi + email, row 2 = linkedin + resume, then the "also made" line */
+    const hiB = rel($('.outro-hi', el)), copyB = rel($('.outro-copybtn', el));
+    const links = [...el.querySelectorAll('.outro-links > a')].map(rel);
+    const row1 = { r: Math.max(hiB.r, copyB.r), t: Math.min(hiB.t, copyB.t), b: Math.max(hiB.b, copyB.b) };
+    const row2 = { r: Math.max(...links.map((x) => x.r)), b: Math.max(...links.map((x) => x.b)) };
+    const also = rel($('.outro-also', el)), pol = rel($('.outro-polaroid', el));
+    const w = spot.offsetWidth, h = w * 240 / 220;
+    const vis = 1.25;                 // the drawn cup (halo + steam + tilt) is ~25% bigger than its box
+    const pad = (vis - 1) * w * 0.5;  // how far the drawing spills past its box on each side
+    const gap = 22;
+    let left, top;
+    if (row1.r + gap + pad + w * vis <= pol.l - gap) {
+      /* A: beside "say hi" + the email, where it can be refilled in plain sight */
+      left = row1.r + gap + pad;
+      top = row1.t - pad;
+    } else {
+      /* B: under the email button, right of linkedin/resume and the "also made" line */
+      left = Math.max(row2.r, also.r) + gap + pad;
+      top = row1.b + gap + pad;
+    }
+    top = Math.max(0, Math.min(top, s.height - h * vis - 12));   // never off the bottom
+    left = Math.min(left, pol.l - w * vis - gap);                 // never into the polaroid
+    const moved = spot.style.left !== `${Math.round(left)}px` || spot.style.top !== `${Math.round(top)}px`;
+    spot.style.left = `${Math.round(left)}px`;
+    spot.style.top = `${Math.round(top)}px`;
+    /* cup.js only re-measures its anchors on resize / refresh / this event */
+    if (moved) dispatchEvent(new Event('intro:plate'));
+    /* the "say hi = refill" note: beside the cup if there's room before the polaroid, else under it, else hidden */
+    note.style.visibility = '';
+    const nw = note.offsetWidth || 170, nh = note.offsetHeight || 44;
+    const cupR = left + w * vis, cupB = top + h * vis;
+    if (cupR + 8 + nw < pol.l - 8) { note.style.left = `${Math.round(cupR + 8)}px`; note.style.top = `${Math.round(top + h * 0.55)}px`; }
+    else if (cupB + nh < s.height - 8) { note.style.left = `${Math.round(left)}px`; note.style.top = `${Math.round(cupB)}px`; }
+    else note.style.visibility = 'hidden';
+  };
+  el._placeCup = place;
+  /* the first measure can happen before the fonts / polaroid photo settle (buttons render shorter,
+     so the cup lands on the email button). re-place whenever any of those boxes change size. */
+  let raf = 0;
+  const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(place); };
+  addEventListener('resize', schedule);
+  document.fonts?.ready.then(schedule);
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver(schedule);
+    ['.outro-actions', '.outro-copy', '.outro-polaroid', '.outro-scene'].forEach((q) => { const n = $(q, el); if (n) ro.observe(n); });
+  }
+  $('.outro-polaroid img', el)?.addEventListener('load', schedule);
 }
 
 export function motion(ctx, el) {
