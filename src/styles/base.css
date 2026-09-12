@@ -1,5 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
+/* a sideways swipe scrolls the story; without this, chrome on mac treats it as browser back/forward */
+html, body { overscroll-behavior-x: none; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 

@@ -121,13 +121,15 @@ export function motion(ctx, el) {
       { x: () => g(i).dx * 0.96, y: () => g(i).dy - g(i).h * 0.2, scale: 0.3, rotation: -ROT[i] * 0.6, opacity: 1, duration: POP.rise, ease: 'power2.out' }, at)
       .to(card, { x: 0, y: 0, scale: 1, rotation: ROT[i], duration: POP.fly, ease: 'back.out(1.35)' }, at + POP.rise);
   });
-  tl.fromTo($('.brew-sub', el), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.08, ease: 'power2.out' }, 0.6)
+  /* the hint lands the moment the LAST card breaks out of the coffee, not before */
+  const lastOut = POP.first + (cards.length - 1) * POP.gap + POP.rise;
+  tl.fromTo($('.brew-sub', el), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.08, ease: 'power2.out' }, lastOut)
     /* the entry timeline fades the outer label in; this one fades the inner out.
        two elements, so the two scrubbed timelines never fight over one opacity */
     .fromTo($('.brew-label-in', el), { y: 0, opacity: 1 }, { y: -10, opacity: 0, duration: 0.06 }, 0.1)
     .set({}, {}, 1);
   ctx.draw($('.brew-sub', el));
-  tl.to($$('.brew-sub path', el), { strokeDashoffset: 0, duration: 0.08 }, 0.63);
+  tl.to($$('.brew-sub path', el), { strokeDashoffset: 0, duration: 0.08 }, lastOut + 0.03);
 
   /* keyboard: focusing a card that hasn't come out yet brings the story to it */
   cards.forEach((card) => card.addEventListener('focusin', () => {

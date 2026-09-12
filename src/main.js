@@ -39,7 +39,13 @@ chrome();
 /* 2. smooth scroll */
 let lenis = null;
 if (!reduced) {
-  lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 1, touchMultiplier: 1.4 });
+  /* gestureOrientation 'both': the story moves sideways, so a sideways trackpad swipe (or
+     shift+wheel) scrolls it too — swipe left goes forward, swipe right goes back, same as
+     scrolling down/up. syncTouch lets a horizontal finger swipe on phones do the same. */
+  lenis = new Lenis({
+    lerp: 0.085, wheelMultiplier: 1, touchMultiplier: 1.4,
+    gestureOrientation: 'both', syncTouch: true, syncTouchLerp: 0.08,
+  });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);

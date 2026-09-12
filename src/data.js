@@ -70,7 +70,7 @@ export const TALLY = {
       id: 'rewards',
       bg: '/img/scenes/tally-rewards.jpg',
       title: 'rewards? *missed* again.',
-      body: 'you paid ₹12k on the card that gives you nothing. the good card was in your other pocket.',
+      body: 'you paid ₹12k with the card that earns nothing. the cashback card was saved in the *same* app. nobody told you to pick it.',
       bubble: 'there was cashback?? on THAT card??',
     },
   ],
