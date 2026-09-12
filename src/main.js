@@ -19,6 +19,8 @@ import * as cox from './sections/cox.js';
 import * as pawnet from './sections/pawnet.js';
 import * as outro from './sections/outro.js';
 import * as cup from './sections/cup.js';
+import { wireHello } from './sections/hello.js';
+wireHello(); // every [data-hello] button opens the say-hello dialog
 
 gsap.registerPlugin(ScrollTrigger);
 

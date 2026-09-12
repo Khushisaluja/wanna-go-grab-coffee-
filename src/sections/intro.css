@@ -77,7 +77,7 @@ html.is-static .intro-scene { position: relative; height: 100vh; height: 100svh;
 /* up and to the left of her head, in the glass wall, tail pointing at her */
 .intro-bubble {
   z-index: 2; left: calc((var(--intro-head-x) - .035) * 100%);
-  top: calc(var(--intro-head-y) * 100%); translate: -100% -135%;
+  top: calc(var(--intro-head-y) * 100%); translate: -100% -165%;
   --tail-x: 76%; max-width: 20ch; font-size: clamp(.85rem, 1.1vw, 1.1rem);
   transform-origin: 80% 115%;
 }

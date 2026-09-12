@@ -9,7 +9,27 @@ export const ME = {
   name: 'khushi saluja',
   email: 'khushisaluj.work@gmail.com',
   linkedin: 'https://www.linkedin.com/in/khushi-saluja-sophomoretiet/',
-  resume: '/Khushi_Saluja_Resume.pdf',
+  resume: 'https://drive.google.com/file/d/1Hff_dHhM8z_VjiagBHClrEOKoBPB78eH/view',
+};
+
+/* web3forms public access key (same one the case-file site uses). public by design:
+   web3forms keys only allow sending to the inbox they were created for. */
+export const WEB3FORMS_KEY = 'f78be691-1af0-4001-a155-7607706816bf';
+
+export const HELLO = {
+  title: 'say hello 👋',
+  sub: 'drop me a short note, i read everything 💌',
+  name: 'your name',
+  email: 'your email (so i can reply back)',
+  message: 'write a tiny message ✨',
+  hint: 'say anything: ideas, feedback, a role, or just hi',
+  max: 240,
+  send: 'send',
+  sending: 'sending…',
+  close: 'close',
+  sentTitle: 'sent! ☕',
+  sentBody: 'it’s in my inbox. i’ll reply from khushisaluj.work@gmail.com, peek in spam if it’s quiet for a day.',
+  error: 'that didn’t send. try again, or email me at khushisaluj.work@gmail.com',
 };
 
 export const walkthrough = (project) =>

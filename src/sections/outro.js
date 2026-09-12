@@ -19,12 +19,12 @@ export function build(el) {
       <h2 class="outro-title">${em(OUTRO.title)}</h2>
       <p class="outro-sub">${esc(OUTRO.sub)}</p>
       <div class="outro-actions">
-        <a class="btn outro-hi" href="mailto:${esc(ME.email)}">
+        <a class="btn outro-hi" href="mailto:${esc(ME.email)}" data-hello aria-haspopup="dialog">
           <span class="outro-hi-say">say hi</span>
           <span class="outro-hi-mail">${esc(ME.email)}</span>
         </a>
         <a class="btn btn--light outro-link" href="${esc(ME.linkedin)}" target="_blank" rel="noreferrer">linkedin <span aria-hidden="true">↗</span><span class="sr"> (opens in a new tab)</span></a>
-        <a class="btn btn--light outro-link" href="${esc(ME.resume)}" target="_blank" rel="noreferrer">resume <span aria-hidden="true">↗</span><span class="sr"> (pdf, opens in a new tab)</span></a>
+        <a class="btn btn--light outro-link" href="${esc(ME.resume)}" target="_blank" rel="noreferrer">resume <span aria-hidden="true">↗</span><span class="sr"> (google drive, opens in a new tab)</span></a>
       </div>
       <p class="outro-also">${esc(OUTRO.also)}</p>
     </div>

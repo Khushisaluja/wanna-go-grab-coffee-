@@ -1,0 +1,65 @@
+/* say hello dialog. same paper-and-ink sticker world as the rest of the site. */
+.hello {
+  padding: 0; border: 0; background: transparent; max-width: none; max-height: none;
+  width: min(560px, calc(100vw - 32px)); margin: auto; overflow: visible; color: var(--ink);
+}
+.hello::backdrop { background: rgba(30, 20, 14, .62); backdrop-filter: blur(3px); }
+html.hello-open { overflow: hidden; }
+
+.hello-card {
+  position: relative; background: var(--milk); border: var(--dd-stroke) solid var(--ink); border-radius: 26px;
+  padding: clamp(22px, 4vw, 36px); box-shadow: 0 0 0 7px #fff, 6px 10px 0 7px rgba(30, 20, 14, .28);
+  max-height: calc(100svh - 48px); overflow: auto;
+}
+.hello-title { margin: 0 3.2rem .3rem 0; font-weight: 800; font-size: clamp(1.6rem, 3vw, 2rem); letter-spacing: -.03em; line-height: 1.05; }
+.hello-title:focus { outline: none; }
+.hello-sub { margin: 0 0 1.3rem; color: var(--ink-2); font-size: 1rem; }
+
+.hello-x {
+  position: absolute; top: clamp(16px, 3vw, 26px); right: clamp(16px, 3vw, 26px); width: 44px; height: 44px; border-radius: 14px;
+  display: grid; place-items: center; background: var(--latte); border: 1.5px solid var(--ink); cursor: pointer;
+  transition: transform .25s var(--ease-pop), background .2s;
+}
+.hello-x:hover { transform: rotate(90deg); background: #fff; }
+.hello-x svg { width: 18px; height: 18px; }
+.hello-x path { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+
+.hello-form { display: grid; gap: 12px; margin: 0; }
+.hello-field { display: block; }
+.hello-input {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: #fff;
+  border: 1.5px solid #9C8B7E; /* 3.2:1 on white, meets non-text contrast */
+  border-radius: 999px; padding: .85em 1.2em; min-height: 52px; transition: border-color .2s, box-shadow .2s;
+}
+.hello-input::placeholder { color: #6E5F55; } /* 6:1 on white */
+.hello-input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(216, 69, 43, .35); }
+.hello-input[aria-invalid] { border-color: var(--tomato-ink); box-shadow: 0 0 0 3px rgba(168, 50, 28, .18); }
+.hello-textarea { border-radius: 22px; min-height: 130px; resize: vertical; line-height: 1.45; }
+
+.hello-meta { display: flex; justify-content: space-between; gap: 12px; font-size: .85rem; color: var(--ink-2); margin-top: -2px; }
+.hello-count { font-family: var(--f-mono); font-size: .72rem; white-space: nowrap; }
+.hello-count.is-near { color: var(--tomato-ink); }
+.hello-error { margin: 0; color: var(--tomato-ink); font-weight: 600; font-size: .92rem; }
+
+.hello-actions { display: flex; gap: 12px; margin-top: 6px; }
+.hello-send, .hello-close {
+  min-height: 52px; border-radius: 999px; font: inherit; font-weight: 700; font-size: 1.05rem; cursor: pointer;
+  border: var(--dd-stroke) solid var(--ink); transition: transform .25s var(--ease-pop), background .2s, opacity .2s;
+}
+.hello-send { flex: 1; background: var(--tomato); color: #fff; }
+.hello-send:hover:not(:disabled) { transform: translateY(-2px) rotate(-1deg); }
+.hello-send:disabled { opacity: .7; cursor: progress; }
+.hello-close { padding: 0 1.4em; background: var(--latte); color: var(--ink); }
+.hello-close:hover { background: #fff; }
+
+.hello-done { text-align: center; padding-block: 8px; }
+.hello-done .hello-title, .hello-done .hello-sub { margin-right: 0; }
+.hello-done .hello-actions { justify-content: center; }
+.hello-done .hello-send { flex: 0 1 220px; }
+.hello-done-cup { width: 120px; margin: 0 auto 10px; display: block; }
+.hello-done-tick { stroke: var(--tomato) !important; stroke-width: 4px !important; }
+
+@media (max-width: 480px) {
+  .hello-actions { flex-direction: column-reverse; }
+  .hello-close { width: 100%; }
+}
