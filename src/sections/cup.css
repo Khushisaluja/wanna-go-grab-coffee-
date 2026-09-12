@@ -1,0 +1,52 @@
+/* ------------------------------------------------------------------
+   the traveling cup. .cup is moved by cup.js every frame (x/y/scale/
+   rotation only), never by CSS transforms.
+   ------------------------------------------------------------------ */
+.cupstage > .cup {
+  position: absolute; left: 0; top: 0; width: 440px; height: 480px;
+  pointer-events: none; opacity: 0; will-change: transform;
+}
+
+.cup-svg { display: block; width: 100%; height: 100%; overflow: visible; --cup-sw: 2.6; }
+.cup-svg path, .cup-svg ellipse, .cup-svg circle { vector-effect: none; }
+.cup-svg .cup-line { fill: none; stroke: var(--ink); stroke-width: var(--cup-sw); stroke-linecap: round; stroke-linejoin: round; }
+.cup-svg .cup-fill { fill: var(--milk); }
+.cup-svg .cup-fill.cup-line { fill: var(--milk); }
+.cup-svg .cup-thin { stroke-width: calc(var(--cup-sw) * .7); opacity: .35; }
+.cup-svg .cup-heart { fill: none; }
+.cup-svg .cup-halo path { fill: #fff; stroke: #fff; stroke-width: calc(var(--cup-sw) * 4.2); stroke-linejoin: round; }
+.cup-svg .cup-halo-s { fill: #fff; stroke: #fff; stroke-width: calc(var(--cup-sw) * 4); stroke-linejoin: round; }
+.cup-svg .cup-stripe { fill: var(--tomato); }
+.cup-svg .cup-wall { fill: #E8D6BC; }
+.cup-svg .cup-coffee { fill: #3A2116; }
+.cup-svg .cup-crema { fill: none; stroke: var(--crema); stroke-width: calc(var(--cup-sw) * .9); stroke-linecap: round; stroke-dasharray: 38 14 60 20; opacity: .75; }
+.cup-svg .cup-shadow { fill: var(--ink); opacity: .16; }
+.cup-svg .cup-drop { fill: #3A2116; stroke: var(--ink); stroke-width: calc(var(--cup-sw) * .6); }
+.cup-svg .cup-splash { opacity: 0; }
+.cup-svg .cup-steam path { fill: none; stroke-linecap: round; }
+.cup-svg .cup-steam-o { stroke: #fff; stroke-width: calc(var(--cup-sw) * 3.4); }
+.cup-svg .cup-steam-p { stroke: var(--ink); stroke-width: var(--cup-sw); }
+.cup-svg .cup-pot { opacity: 0; }
+.cup-svg .cup-stream-o { fill: none; stroke: var(--ink); stroke-width: calc(var(--cup-sw) * 4.2); stroke-linecap: round; }
+.cup-svg .cup-stream { fill: none; stroke: #5A3422; stroke-width: calc(var(--cup-sw) * 2.4); stroke-linecap: round; }
+
+/* the parked mini cup's hit target */
+.cupstage > .cup-btn {
+  position: absolute; left: 0; top: 0; width: 64px; height: 64px; padding: 0; margin: 0;
+  background: transparent; border: 0; border-radius: 18px; cursor: pointer;
+  visibility: hidden; pointer-events: none;
+}
+.cupstage > .cup-btn.is-on { visibility: visible; pointer-events: auto; }
+.cup-tip {
+  position: absolute; left: calc(100% + 4px); top: 18%; white-space: nowrap;
+  font-family: var(--f-hand); font-weight: 600; font-size: .9rem; color: var(--ink);
+  background: var(--milk); border: 2px solid var(--ink); border-radius: 999px; padding: .25em .75em;
+  box-shadow: 0 0 0 4px #fff; opacity: 0; transform: translateX(-6px) rotate(-3deg);
+  transition: opacity .2s, transform .3s var(--ease-pop); pointer-events: none;
+}
+.cup-btn:hover .cup-tip, .cup-btn:focus-visible .cup-tip { opacity: 1; transform: translateX(0) rotate(-3deg); }
+
+/* static clones inside sections: line weight fixed for their size */
+.intro-cupspot .cup-svg, .brew-cupspot .cup-svg, .outro-cupspot .cup-svg { --cup-sw: 4.4; }
+.cup-svg:not(.is-refill) .cup-pot { opacity: 0; }
+.cup-svg.is-refill .cup-pot { opacity: 1; }

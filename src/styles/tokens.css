@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------------
+   tokens. the world: real photos, with hand-drawn doodles stuck on top
+   like stickers (cream fill, espresso ink line, white halo). one cup of
+   coffee travels through the whole story.
+   ------------------------------------------------------------------ */
+:root {
+  /* ground */
+  --paper: #F3EBDD;       /* page ground, kraft-cream */
+  --milk: #FBF6EE;        /* doodle fill, cards */
+  --latte: #E6D3B8;       /* soft panels, dividers */
+  --crema: #C98B4E;       /* decoration only, never small text */
+  --espresso: #2A1A12;    /* dark panels */
+
+  /* ink */
+  --ink: #1E140E;         /* text + doodle line. 15.9:1 on paper */
+  --ink-2: #4A3B31;       /* secondary text. 9.2:1 on paper */
+  --ink-on-dark: #F6EEE2; /* text on espresso / photos with scrim */
+
+  /* accent: the red stripe from the doodle girl's top. one per view. */
+  --tomato: #D8452B;      /* large text / fills only (3.9:1 on paper) */
+  --tomato-ink: #A8321C;  /* small text in accent (6.1:1 on paper) */
+
+  /* project tints (only inside their own sections) */
+  --tally-obsidian: #0E0F0C; --tally-lime: #D4F25A;
+  --cox-blue: #0B5AB1; --cox-deep: #07366A; --cox-sienna: #BD4011;
+  --paw-brown: #5C3D2E; --paw-terra: #C75B39; --paw-cream: #FBF7F2;
+
+  /* type */
+  --f-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, sans-serif;
+  --f-hand: 'Shantell Sans', 'Comic Neue', ui-rounded, sans-serif;
+  --f-mono: 'Martian Mono', ui-monospace, monospace;
+
+  --t-mega: clamp(3.4rem, 11vw, 11rem);
+  --t-xl: clamp(2.4rem, 6vw, 5.6rem);
+  --t-l: clamp(1.8rem, 3.6vw, 3.2rem);
+  --t-m: clamp(1.2rem, 1.8vw, 1.6rem);
+  --t-body: clamp(1rem, 1.15vw, 1.15rem);
+  --t-small: .875rem;
+  --t-micro: .75rem;
+
+  /* doodle line */
+  --dd-stroke: 2.6px;
+  --dd-halo: 7px;          /* white sticker outline width */
+
+  /* motion */
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-pop: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* layout */
+  --chrome-h: 64px;
+  --gutter: clamp(16px, 3vw, 48px);
+  --radius: 14px;
+
+  /* reserved zone: bottom-left, where the mini cup parks during project
+     chapters. sections must keep text/buttons out of this box. */
+  --cup-zone-w: 150px;
+  --cup-zone-h: 170px;
+}

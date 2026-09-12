@@ -1,0 +1,1 @@
+- [Tally chapter](project_tally_chapter.md) — sideways tally section; local copy + screen overrides not in data.js, anchors keyed to screen PNG %

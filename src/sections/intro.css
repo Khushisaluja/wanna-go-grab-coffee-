@@ -1,0 +1,150 @@
+/* ------------------------------------------------------------------
+   intro. PHOTO COORDINATES LIVE HERE: all as fractions of the image.
+   --intro-pos-x/y   object-position of the photo (0..1)
+   --intro-table-x/y the table surface point the cup sits on (cup's foot)
+   --intro-head-x/y  her head (the bubble tail points here)
+   --intro-cup-w     cup width as a fraction of the rendered image width
+   ------------------------------------------------------------------ */
+#intro {
+  /* outpainted 16:9 scene: /img/scenes/hero-wide.jpg (see MANIFEST.md) */
+  --intro-ratio: 1.7778;
+  --intro-pos-x: .5;  --intro-pos-y: .5;
+  --intro-table-x: .125; --intro-table-y: .72;
+  --intro-head-x: .61; --intro-head-y: .38;
+  --intro-cup-w: .07;
+  --intro-spread: .75;
+  background: #D9CFC3;
+}
+/* portrait original: /img/raw/hero-newspaper.jpg (1800x2400) */
+#intro.intro--fallback {
+  --intro-ratio: .75;
+  --intro-pos-x: .5; --intro-pos-y: .6;
+  --intro-table-x: .745; --intro-table-y: .472;
+  --intro-head-x: .5;  --intro-head-y: .44;
+  --intro-cup-w: .072;
+  --intro-spread: 1;
+}
+
+.intro-scene { position: absolute; inset: 0; }
+html.is-static .intro-scene { position: relative; height: 100vh; height: 100svh; min-height: 560px; }
+
+/* ---------- photo ---------- */
+.intro-photo { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.intro-plate { position: absolute; inset: 0; }
+.intro-img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 60%; transform-origin: 60% 45%; }
+.intro--fit .intro-img { object-fit: fill; }
+.intro-scrim { position: absolute; inset: 0; background: var(--espresso); opacity: 0; pointer-events: none; }
+
+/* everything on the plate is placed in image fractions */
+.intro-cupspot {
+  position: absolute; aspect-ratio: 220 / 240;
+  width: max(58px, calc(var(--pw, 1440px) * var(--intro-cup-w)));
+  left: calc(var(--intro-table-x) * 100%);
+  top: calc(var(--intro-table-y) * 100%);
+  /* the foot of the cup (226/240 down, 100/220 across) lands on the table point */
+  translate: calc(-100% * 100 / 220) calc(-100% * 226 / 240);
+}
+/* static: the cup lives inside the spot */
+.intro-cupspot .cup-svg { width: 100%; height: 100%; }
+
+.intro-dd { position: absolute; }
+.intro-dd svg { display: block; width: 100%; height: auto; }
+.intro-dd--book {
+  width: max(56px, calc(var(--pw, 1440px) * .062));
+  left: calc((var(--intro-table-x) + .07 * var(--intro-spread)) * 100%);
+  top: calc(var(--intro-table-y) * 100%); translate: -30% -78%;
+}
+.intro-dd--pen {
+  width: max(46px, calc(var(--pw, 1440px) * .05));
+  left: calc((var(--intro-table-x) + .13 * var(--intro-spread)) * 100%);
+  top: calc(var(--intro-table-y) * 100%); translate: -20% -70%;
+}
+/* lying on the free patch of table in front of the bag */
+.intro-dd--sticky {
+  width: max(66px, calc(var(--pw, 1440px) * .07));
+  left: calc((var(--intro-table-x) + .2 * var(--intro-spread)) * 100%);
+  top: calc((var(--intro-table-y) + .11) * 100%); translate: -50% -50%; rotate: 8deg;
+}
+.intro-dd--sparks {
+  width: max(44px, calc(var(--pw, 1440px) * .045));
+  left: calc((var(--intro-table-x) + .05 * var(--intro-spread)) * 100%);
+  top: calc(var(--intro-table-y) * 100%); translate: 0 -290%;
+}
+.intro-sticky-t { font-family: var(--f-hand); font-weight: 700; font-size: 17px; fill: var(--ink); }
+.intro-doodles .dd--sticker .dd-halo { fill: #fff; }
+
+/* up and to the left of her head, in the glass wall, tail pointing at her */
+.intro-bubble {
+  z-index: 2; left: calc((var(--intro-head-x) - .035) * 100%);
+  top: calc(var(--intro-head-y) * 100%); translate: -100% -135%;
+  --tail-x: 76%; max-width: 20ch; font-size: clamp(.85rem, 1.1vw, 1.1rem);
+  transform-origin: 80% 115%;
+}
+
+/* ---------- the note ---------- */
+.intro-card {
+  position: absolute; z-index: 3; right: calc(var(--gutter) + 1vw); bottom: 6.5vh;
+  width: min(470px, 31vw); rotate: -1.4deg;
+  filter: drop-shadow(0 0 0 #fff) drop-shadow(4px 8px 0 rgba(30, 20, 14, .2));
+}
+.intro-paper {
+  position: relative; background: var(--milk); color: var(--ink);
+  padding: clamp(22px, 2.4vw, 38px) clamp(20px, 2.4vw, 36px) clamp(30px, 3vw, 44px);
+  --torn: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'><path d='M0 0H100V7L97 11L93 6L89 12L85 8L80 12L76 6L71 11L67 7L62 12L58 8L53 11L49 6L44 12L40 8L35 11L31 6L26 12L22 7L17 11L13 7L8 12L4 8L0 11Z'/></svg>");
+  -webkit-mask: linear-gradient(#000, #000) top / 100% calc(100% - 13px) no-repeat, var(--torn) bottom / 100% 14px no-repeat;
+          mask: linear-gradient(#000, #000) top / 100% calc(100% - 13px) no-repeat, var(--torn) bottom / 100% 14px no-repeat;
+}
+/* the mask would clip the tape, so the tape draws inside the top edge */
+.intro-tape {
+  position: absolute; top: 0; left: 50%; width: 118px; height: 22px; margin-left: -59px; rotate: -2deg;
+  background: rgba(201, 139, 78, .28);
+  clip-path: polygon(0 10%, 6% 0, 12% 12%, 88% 0, 94% 14%, 100% 4%, 100% 90%, 94% 100%, 88% 86%, 10% 100%, 4% 88%, 0 100%);
+}
+.intro-hello {
+  margin: .1em 0 .18em; font-weight: 800; letter-spacing: -.04em; line-height: .9;
+  font-size: clamp(2.6rem, 5.5vw, 5.6rem); text-wrap: balance;
+}
+.intro-hello .w { padding-bottom: .12em; margin-bottom: -.12em; }
+.intro-line { margin: 0 0 1em; font-size: var(--t-m); line-height: 1.25; font-weight: 500; letter-spacing: -.01em; max-width: 24ch; }
+.intro-facts { display: flex; flex-wrap: wrap; gap: 8px 8px; margin: 0 0 1.1em; padding: 0; list-style: none; }
+.intro-fact {
+  font-family: var(--f-hand); font-weight: 600; font-size: clamp(.8rem, .95vw, .95rem); line-height: 1.2;
+  padding: .32em .75em .38em; border: 2px solid var(--ink); background: #fff;
+  border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px;
+}
+.intro-fact:nth-child(1) { rotate: -2deg; }
+.intro-fact:nth-child(2) { rotate: 1.5deg; }
+.intro-fact:nth-child(3) { rotate: -1deg; background: var(--ink); color: var(--milk); }
+.intro-fact:nth-child(4) { rotate: 2.2deg; }
+.intro-side { margin: 0; font-size: var(--t-small); color: var(--ink-2); max-width: 44ch; line-height: 1.45; }
+
+.intro-nawab {
+  position: absolute; right: 12%; bottom: calc(100% - 12px); width: clamp(76px, 7vw, 104px);
+  aspect-ratio: 120 / 104; overflow: hidden; z-index: 2; pointer-events: none;
+}
+.intro-nawab-svg { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; }
+.intro-nawab .intro-ear { fill: var(--latte); }
+
+/* hidden until the load sequence takes over (motion removes the class) */
+html:not(.is-static) .intro--pre .intro-card,
+html:not(.is-static) .intro--pre .intro-bubble,
+html:not(.is-static) .intro--pre .intro-doodles { opacity: 0; }
+
+/* ---------- portrait phones & tablets: note on top, her below ---------- */
+@media (max-width: 860px) and (orientation: portrait) {
+  .intro-photo { top: 41%; }
+  #intro.intro--fallback { --intro-pos-y: .5; --intro-cup-w: .085; }
+  /* a portrait crop can't hold both the round table and her head, so on
+     phones the cup sits on the bar table just right of her (MANIFEST:
+     bar table x 45-81%, top surface ~y 40%) */
+  #intro { --intro-pos-x: .62; --intro-table-x: .745; --intro-table-y: .405; --intro-spread: -1; --intro-cup-w: .075; }
+  .intro-dd--sticky, .intro-dd--pen { display: none; }
+  .intro-card { left: 16px; right: 16px; top: calc(var(--chrome-h) + 10px); bottom: auto; width: auto; rotate: -1deg; }
+  .intro-hello { font-size: clamp(2.3rem, 11vw, 3.4rem); }
+  .intro-line { font-size: 1rem; margin-bottom: .75em; max-width: none; }
+  .intro-facts { gap: 6px; margin-bottom: .75em; }
+  .intro-fact { font-size: .76rem; }
+  .intro-side { font-size: .78rem; line-height: 1.35; }
+  .intro-nawab { width: 70px; right: 8%; }
+  .intro-bubble { font-size: .78rem; max-width: 16ch; padding: .7em 1em; left: calc((var(--intro-head-x) - .025) * 100%); }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "khushi-coffee-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5210",
+    "build": "vite build",
+    "preview": "vite preview --port 5211"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/martian-mono": "^5.3.0",
+    "@fontsource/shantell-sans": "^5.3.0",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  }
+}

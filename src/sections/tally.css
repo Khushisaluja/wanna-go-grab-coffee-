@@ -1,0 +1,252 @@
+/* tally section styles — every class is prefixed .tally- */
+.tally { --tally-cream: #F6EEE2; --tally-mute: #B7B09F; --tally-title-w: 70vw; --tally-end-w: 60vw; background: var(--paper); }
+.tally-row { display: flex; flex-wrap: nowrap; height: 100%; }
+.tally-group { display: flex; flex-wrap: nowrap; height: 100%; flex: 0 0 auto; }
+.tally-sub { position: relative; flex: 0 0 auto; height: 100%; overflow: hidden; }
+
+.tally-kicker { margin: 0 0 .9rem; color: var(--ink-2); text-transform: lowercase; }
+.tally-kicker--lime { color: var(--tally-lime); }
+
+/* doodle fills are separate paths so the outline can draw first */
+.tally .dd .tally-fillp { stroke: none; }
+.tally .dd .tally-coinfill { fill: #E9B36A; }
+.tally .dd .tally-motion { stroke-dasharray: 1 9; stroke-width: 3px; }
+.tally .dd--sticker .dd-halo { fill: #fff; stroke: #fff; stroke-width: 12px; }
+
+/* ================================================================ title card */
+.tally-title { background: var(--paper); }
+.tally-title-in {
+  position: absolute; left: clamp(24px, 7vw, 120px); right: var(--gutter);
+  top: calc(var(--chrome-h) + 11vh);
+}
+.tally-name {
+  display: flex; align-items: flex-end; gap: .12em; margin: 0; line-height: .82;
+  font-size: clamp(5rem, 15vw, 15rem); font-weight: 800; letter-spacing: -.055em;
+}
+.tally-name-word { display: inline-block; flex: 0 0 auto; padding: 0 .04em .08em 0; overflow: hidden; }
+.tally-marks { width: .62em; height: auto; margin-bottom: .12em; flex: 0 0 auto; }
+.tally-marks .dd-draw { stroke-width: 3.4px; }
+.tally-what { margin: 2.4rem 0 0; max-width: 23ch; font-size: var(--t-l); font-weight: 600; line-height: 1.08; letter-spacing: -.03em; }
+.tally-role { margin: 1.4rem 0 0; max-width: 44ch; color: var(--ink-2); font-size: var(--t-body); }
+.tally-role .mono { display: inline-block; margin-right: .6em; padding: .2em .6em; border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink); }
+.tally-ring { position: absolute; width: clamp(180px, 22vw, 340px); right: 4vw; top: 9vh; opacity: .55; }
+.tally-ring path { fill: none; stroke: var(--crema); stroke-width: 9; stroke-linecap: round; }
+.tally-ring .tally-ring-thin { stroke-width: 3; }
+.tally-marker {
+  position: absolute; right: 5vw; bottom: 12vh; margin: 0; display: flex; align-items: center; gap: .4em;
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem); font-weight: 700; color: var(--tomato-ink); rotate: -4deg;
+}
+.tally-marker svg { width: clamp(90px, 9vw, 150px); overflow: visible; }
+.tally-marker path { fill: none; stroke: var(--tomato-ink); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ================================================================ problem scenes */
+.tally-scene { background: var(--latte); }
+.tally-photo {
+  position: absolute; inset: 0; overflow: hidden; container-type: size;
+  background: radial-gradient(120% 90% at 30% 20%, #efe3cf, #d9c4a5);
+}
+/* the frame keeps the photo's own aspect and covers the box, so doodle
+   coordinates are photo percentages (see MANIFEST.md) */
+.tally-frame {
+  --fw: max(106cqw, calc(106cqh * 1.791));
+  position: absolute; left: 50%; top: 50%;
+  width: var(--fw); aspect-ratio: 2400 / 1340;
+  margin-left: calc(var(--fw) * var(--fx, .5) * -1);
+  margin-top: calc(var(--fw) / 1.791 * -.5);
+}
+.tally-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tally-fig {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); aspect-ratio: 1 / var(--r);
+  will-change: transform; transform-origin: 50% 90%;
+}
+.tally-fig svg { width: 100%; height: 100%; display: block; }
+.tally-fig--coin { transform-origin: 50% 50%; }
+.tally-bubble { left: var(--x); top: var(--y); z-index: 2; max-width: 17ch; transform-origin: var(--tail-x) 120%; }
+.tally-bubble--wide { max-width: 24ch; white-space: nowrap; }
+
+.tally-card { position: absolute; z-index: 3; top: calc(var(--chrome-h) + 7vh); width: min(31vw, 460px); }
+.tally-card--left { left: var(--gutter); rotate: -1.6deg; }
+.tally-card--right { right: var(--gutter); rotate: 1.4deg; }
+.tally-card-in {
+  position: relative; background: var(--milk); color: var(--ink);
+  padding: clamp(20px, 2.2vw, 34px) clamp(20px, 2.2vw, 34px) clamp(22px, 2.4vw, 36px);
+  border: var(--dd-stroke) solid var(--ink); border-radius: 6px 10px 8px 12px;
+  box-shadow: 0 0 0 6px #fff, 6px 10px 0 6px rgba(30, 20, 14, .22);
+}
+.tally-tape {
+  position: absolute; top: -18px; left: 50%; margin-left: -54px; width: 108px; height: 30px; rotate: -3deg;
+  background: rgba(230, 211, 184, .88); border: 1px solid rgba(30, 20, 14, .12);
+}
+.tally-card-title { margin: 0 0 .8rem; font-size: clamp(1.9rem, 2.9vw, 3rem); font-weight: 800; line-height: .98; letter-spacing: -.035em; }
+.tally-card-title .caps { color: var(--tomato-ink); }
+.tally-card-body { margin: 0; color: var(--ink-2); font-size: var(--t-body); line-height: 1.45; max-width: 38ch; }
+
+/* ================================================================ the turn */
+.tally-turn { background: var(--tally-obsidian); }
+.tally-turn-in { position: absolute; left: 0; top: 0; width: 100vw; height: 100%; overflow: hidden; background: var(--paper); }
+.tally-scribble { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tally-scribble path { fill: none; stroke: var(--tally-obsidian); stroke-width: 26; stroke-linecap: round; stroke-linejoin: round; }
+.tally-ink { position: absolute; inset: 0; background: var(--tally-obsidian); }
+/* GSAP moves .tally-pen; the tip offset lives on the svg (own-box %) */
+.tally-pen { position: absolute; left: 0; top: 0; width: clamp(80px, 9vw, 130px); aspect-ratio: 112 / 192; z-index: 2; pointer-events: none; }
+.tally-pen svg { width: 100%; height: 100%; display: block; translate: -6% -97%; }
+.tally-turn-before {
+  position: absolute; left: 12vw; top: 38%; margin: 0; z-index: 1;
+  font-size: clamp(2rem, 4.6vw, 4.4rem); font-weight: 700; line-height: 1; color: var(--ink);
+}
+.tally-turn-after {
+  position: absolute; left: clamp(24px, 9vw, 160px); right: 8vw; top: 50%; margin: -.9em 0 0; z-index: 3;
+  font-size: clamp(2.6rem, 7.2vw, 7.4rem); font-weight: 800; line-height: .92; letter-spacing: -.045em; color: var(--tally-cream);
+  max-width: 13ch;
+}
+.tally-turn-after .caps { color: var(--tally-lime); }
+
+/* ================================================================ solutions */
+.tally-group--dark, .tally-sol, .tally-end { background: var(--tally-obsidian); color: var(--tally-cream); }
+.tally-sol::before { /* one quiet lime light, not a gradient wash */
+  content: ''; position: absolute; width: 60vmax; height: 60vmax; right: -18vmax; top: -24vmax; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(212, 242, 90, .07), transparent 70%); pointer-events: none;
+}
+.tally-sol-copy { position: absolute; z-index: 2; left: clamp(24px, 5vw, 88px); top: calc(var(--chrome-h) + 9vh); width: 31vw; }
+.tally-sol-title { margin: 0 0 1.2rem; font-size: clamp(2.2rem, 3.9vw, 4.3rem); font-weight: 800; line-height: .96; letter-spacing: -.04em; }
+.tally-sol-title .caps { color: var(--tally-lime); }
+.tally-sol-body { margin: 0; max-width: 34ch; color: var(--tally-mute); font-size: var(--t-body); line-height: 1.5; }
+.tally-sol-body .caps { color: var(--tally-cream); }
+
+/* the pointers exist once, as a real list. on desktop they are read by
+   screen readers only and the hand notes (aria-hidden) show them. */
+.tally-pointers { list-style: none; margin: 0; padding: 0; }
+.tally-pointers li { display: flex; gap: .6em; align-items: flex-start; }
+.tally-num {
+  flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%;
+  background: var(--tally-lime); color: var(--tally-obsidian); font: 700 .78rem/1 var(--f-display);
+}
+
+.tally-stage {
+  position: absolute; left: 37vw; right: var(--gutter); top: var(--chrome-h); bottom: 0;
+  display: flex; align-items: center; justify-content: center; gap: 3vw;
+}
+.tally-sol--duo { --shot-h: min(58vh, 560px); }
+.tally-sol--trio { --shot-h: min(47vh, 460px); }
+.tally-sol--trio .tally-stage { gap: 2.2vw; }
+.tally-shot-p { position: relative; flex: 0 0 auto; margin-top: calc(var(--lift) * 2); }
+.tally-shot { position: relative; margin: 0; height: var(--shot-h); aspect-ratio: 392 / 832; }
+.tally-shot img {
+  width: 100%; height: 100%; border-radius: 11% / 5.2%;
+  box-shadow: 0 0 0 1px rgba(246, 238, 226, .1), 0 30px 60px -18px rgba(0, 0, 0, .85), 0 0 50px -10px rgba(212, 242, 90, .08);
+}
+.tally-note { position: absolute; width: 0; height: 0; z-index: 2; }
+.tally-arrow { position: absolute; left: 0; top: 0; overflow: visible; }
+.tally-arrow path { fill: none; stroke: var(--tally-lime); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.tally-note-text {
+  position: absolute; width: 190px; font-size: clamp(.92rem, 1.05vw, 1.08rem); font-weight: 600; line-height: 1.22; color: var(--tally-cream);
+  text-shadow: 0 1px 12px rgba(14, 15, 12, .9), 0 0 3px rgba(14, 15, 12, .9);
+}
+.tally-aside {
+  position: absolute; right: 2vw; bottom: 6vh; margin: 0; max-width: 20ch; rotate: -3deg;
+  font-size: clamp(1rem, 1.3vw, 1.3rem); font-weight: 700; color: var(--tally-cream);
+}
+.tally-aside svg { display: block; width: 100%; height: 12px; overflow: visible; margin-top: 4px; }
+.tally-aside path { fill: none; stroke: var(--tally-lime); stroke-width: 3; stroke-linecap: round; }
+.tally-pin {
+  position: absolute; z-index: 3; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--tally-lime); color: var(--tally-obsidian);
+  font: 800 .72rem/1 var(--f-display); box-shadow: 0 0 0 3px var(--tally-obsidian);
+}
+@media (min-width: 701px) {
+  .tally-pointers { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tally-pin { display: none; }
+  /* leave room for the right-hand notes inside the viewport */
+  .tally-sol--duo .tally-stage { right: calc(var(--gutter) + 150px); left: 34vw; }
+  .tally-note--right .tally-note-text { width: 160px; }
+}
+
+/* ================================================================ end card */
+.tally-end-in { position: absolute; left: clamp(24px, 6vw, 100px); right: var(--gutter); top: calc(var(--chrome-h) + 12vh); }
+.tally-marks--end { width: clamp(90px, 9vw, 140px); height: auto; margin-bottom: 2rem; }
+.tally-marks--end .dd-draw { stroke: var(--tally-lime); stroke-width: 4px; }
+.tally-end-title { margin: 0 0 2.4rem; max-width: 14ch; font-size: clamp(2.4rem, 5vw, 5rem); font-weight: 800; line-height: .95; letter-spacing: -.045em; }
+.tally-end-title .caps { color: var(--tally-lime); }
+.tally-end-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+.tally-cta { font-size: 1.05rem; }
+.tally-next {
+  min-height: 48px; padding: 8px 4px; background: none; border: 0; cursor: pointer; color: var(--tally-cream);
+  font-size: 1.15rem; font-weight: 700; text-decoration: underline; text-decoration-color: var(--tally-lime);
+  text-decoration-thickness: 2px; text-underline-offset: 6px;
+}
+.tally-next span { display: inline-block; transition: translate .25s var(--ease-out); }
+.tally-next:hover span { translate: 5px 0; }
+.tally-sol :focus-visible, .tally-end :focus-visible { outline-color: var(--tally-lime); }
+
+/* ================================================================ phone portrait */
+@media (max-width: 700px) {
+  .tally { --tally-title-w: 100vw; --tally-end-w: 100vw; }
+  .tally-title-in { left: 20px; right: 20px; top: calc(var(--chrome-h) + 7vh); }
+  .tally-name { font-size: clamp(4.4rem, 26vw, 7rem); }
+  .tally-marks { width: .5em; }
+  .tally-what { margin-top: 1.6rem; font-size: 1.6rem; }
+  .tally-ring { width: 150px; right: -30px; top: 8vh; }
+  .tally-marker { right: 20px; bottom: calc(var(--cup-zone-h) + 16px); font-size: 1.3rem; }
+
+  .tally-photo { bottom: auto; height: 56%; }
+  .tally-frame { margin-left: calc(var(--fw) * var(--mfx, .5) * -1); }
+  .tally-fig { left: var(--mx); top: var(--my); width: var(--mw); }
+  .tally-bubble { left: var(--mx); top: var(--my); font-size: .78rem; padding: .7em .9em; max-width: 14ch; }
+  .tally-bubble::after { width: 14px; height: 14px; bottom: -10px; }
+  .tally-bubble--wide { white-space: normal; max-width: 13ch; }
+  .tally-card, .tally-card--left, .tally-card--right {
+    left: 14px; right: 14px; width: auto; top: auto; rotate: -1deg;
+    bottom: calc(var(--cup-zone-h) + 10px);
+  }
+  .tally-card-in { padding: 16px 18px 18px; }
+  .tally-card-in .tally-kicker { margin-bottom: .5rem; }
+  .tally-card-title { font-size: 1.5rem; margin-bottom: .5rem; }
+  .tally-card-body { font-size: .9rem; line-height: 1.38; }
+
+  .tally-turn-before { left: 20px; font-size: 2rem; }
+  .tally-turn-after { left: 20px; right: 20px; font-size: 3rem; }
+  .tally-pen { width: 70px; }
+
+  .tally-sol-copy { left: 18px; right: 18px; width: auto; top: calc(var(--chrome-h) + 12px); }
+  .tally-sol-title { font-size: 1.85rem; margin-bottom: .6rem; }
+  .tally-sol-body { font-size: .88rem; line-height: 1.4; }
+  .tally-pointers { margin-top: 18px; display: grid; gap: 10px; }
+  .tally-pointers li { font-family: var(--f-hand); font-size: .8rem; font-weight: 600; line-height: 1.28; color: var(--tally-cream); }
+  .tally-pointers .tally-num { width: 1.5rem; height: 1.5rem; font-size: .7rem; }
+  .tally-note, .tally-aside { display: none; }
+  /* the phones fan out in the free space right of the parked cup, under the
+     full-width copy: duo spans 1.6 × phone width, trio 2 × phone width */
+  .tally-stage {
+    left: calc(var(--cup-zone-w) + 4px); right: 12px; top: auto; bottom: 88px; height: min(46vh, 390px);
+    justify-content: center; align-items: flex-end; gap: 0;
+  }
+  .tally-sol--duo { --shot-h: min(40vh, 340px, calc((100vw - var(--cup-zone-w) - 16px) / 1.6 * 2.122)); }
+  .tally-sol--trio { --shot-h: min(38vh, 320px, calc((100vw - var(--cup-zone-w) - 16px) / 1.7 * 2.122)); }
+  .tally-shot-p { margin-top: 0; margin-bottom: calc(var(--lift) * .5 + 16px); }
+  .tally-shot-p + .tally-shot-p { margin-left: -40%; }
+  .tally-sol--trio .tally-shot-p + .tally-shot-p { margin-left: -65%; }
+  .tally-shot-p:nth-child(2) { z-index: 1; }
+  .tally-shot img { border-radius: 11% / 5.2%; }
+
+  .tally-end-in { left: 20px; right: 20px; top: calc(var(--chrome-h) + 8vh); }
+  .tally-end-title { font-size: 2.4rem; }
+  .tally-end-actions { flex-direction: column; align-items: flex-start; }
+}
+
+/* short landscape laptops: keep the card and copy off the cup zone */
+@media (min-width: 701px) and (max-height: 760px) {
+  .tally-card { top: calc(var(--chrome-h) + 3vh); }
+  .tally-card-title { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
+  .tally-sol-copy { top: calc(var(--chrome-h) + 5vh); }
+  .tally-sol-title { font-size: clamp(2rem, 3.4vw, 3.6rem); }
+}
+
+/* ================================================================ static / reduced motion
+   panels stack; everything is drawn and visible (build() is the final state) */
+html.is-static .tally { width: 100% !important; }
+html.is-static .tally-row, html.is-static .tally-group { flex-direction: column; width: 100% !important; height: auto; }
+html.is-static .tally-sub { width: 100% !important; height: 100vh; height: 100svh; min-height: 640px; }
+html.is-static .tally-turn { height: 70vh; }
+html.is-static .tally-turn-before, html.is-static .tally-pen, html.is-static .tally-scribble { display: none; }
+html.is-static .tally-turn-in { background: var(--tally-obsidian); }
+html.is-static .tally-end { height: 80vh; }

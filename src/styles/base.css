@@ -1,0 +1,120 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-size: var(--t-body);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--tomato); outline-offset: 3px; border-radius: 6px; }
+
+/* paper grain over everything, very quiet */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .07; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.caps { font-weight: 800; letter-spacing: .01em; }
+.hand { font-family: var(--f-hand); }
+.mono { font-family: var(--f-mono); font-size: var(--t-micro); letter-spacing: .02em; }
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
+.w > span { display: inline-block; will-change: transform; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.skip { position: fixed; left: 12px; top: -60px; z-index: 200; background: var(--ink); color: var(--milk); padding: 10px 14px; border-radius: 8px; }
+.skip:focus { top: 12px; }
+
+/* ---------- doodle system ----------
+   <svg class="dd"> … paths with class "dd-draw" get stroke draw-in.
+   .dd-fill shapes get the cream sticker fill. halo = paint-order stroke. */
+.dd { overflow: visible; }
+.dd path, .dd circle, .dd ellipse, .dd line, .dd polyline, .dd rect {
+  fill: none; stroke: var(--ink); stroke-width: var(--dd-stroke); stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.dd .dd-fill { fill: var(--milk); }
+.dd .dd-ink { fill: var(--ink); }
+.dd .dd-red { fill: var(--tomato); stroke: var(--ink); }
+.dd--sticker { filter: drop-shadow(0 0 0 var(--milk)) drop-shadow(2px 3px 0 rgba(30,20,14,.18)); }
+.dd--sticker .dd-halo { stroke: #fff; stroke-width: calc(var(--dd-stroke) + var(--dd-halo)); }
+
+/* speech bubble, like the references: cream, ink outline, hand lettering */
+.bubble {
+  position: absolute; font-family: var(--f-hand); font-weight: 600; font-size: clamp(.95rem, 1.2vw, 1.2rem); line-height: 1.25;
+  color: var(--ink); background: var(--milk); border: var(--dd-stroke) solid var(--ink); border-radius: 999px 999px 999px 999px / 70% 70% 70% 70%;
+  padding: .9em 1.3em; max-width: 18ch; text-align: center; box-shadow: 0 0 0 6px #fff, 3px 5px 0 6px rgba(30,20,14,.12);
+}
+.bubble::after { /* tail */
+  content: ''; position: absolute; left: var(--tail-x, 30%); bottom: -16px; width: 22px; height: 22px; background: var(--milk);
+  border-right: var(--dd-stroke) solid var(--ink); border-bottom: var(--dd-stroke) solid var(--ink); transform: skew(28deg) rotate(38deg); border-radius: 0 0 6px 0;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .6em; min-height: 48px; padding: .8em 1.4em; border-radius: 999px;
+  background: var(--ink); color: var(--milk); text-decoration: none; font-weight: 700; border: 0; cursor: pointer;
+  box-shadow: 0 0 0 5px #fff, 3px 5px 0 5px rgba(30,20,14,.15); transition: transform .25s var(--ease-pop), background .2s;
+}
+.btn:hover { transform: translateY(-2px) rotate(-1.5deg); }
+.btn--light { background: var(--milk); color: var(--ink); border: var(--dd-stroke) solid var(--ink); }
+
+/* ---------- chrome ---------- */
+.chrome {
+  position: fixed; inset: 0 0 auto 0; height: var(--chrome-h); z-index: 100; display: flex; align-items: center; gap: 16px;
+  padding-inline: var(--gutter); pointer-events: none;
+}
+.chrome > * { pointer-events: auto; }
+/* logo + resume sit on milk pills so they read over any photo or dark panel,
+   without every section having to toggle the chrome theme */
+.chrome__logo, .chrome__link {
+  background: rgba(251,246,238,.9); backdrop-filter: blur(10px); border: 1.5px solid var(--ink); border-radius: 999px;
+}
+.chrome__logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -.02em; padding: 5px 14px 7px; line-height: 1; color: var(--ink); }
+.chrome__logo span { color: var(--tomato); }
+.chrome__nav { margin-inline: auto; }
+.chrome__nav ol { display: flex; gap: 4px; list-style: none; margin: 0; padding: 4px; background: rgba(251,246,238,.82); backdrop-filter: blur(10px); border: 1.5px solid var(--ink); border-radius: 999px; }
+.chrome__nav button { background: none; border: 0; cursor: pointer; padding: 6px 12px; min-height: 36px; border-radius: 999px; font-size: var(--t-small); font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+.chrome__nav button[aria-current="step"] { background: var(--ink); color: var(--milk); }
+.chrome__end { display: flex; gap: 10px; align-items: center; }
+.chrome__link { font-size: var(--t-small); font-weight: 600; text-decoration: none; padding: 8px 14px; color: var(--ink); }
+.chrome__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.chrome__cta { font-size: var(--t-small); font-weight: 700; text-decoration: none; background: var(--tomato); color: #fff; padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--ink); }
+
+@media (max-width: 860px) {
+  .chrome__nav { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); margin: 0; max-width: calc(100vw - 32px); overflow-x: auto; }
+  .chrome__nav button { padding: 6px 10px; font-size: .8rem; }
+  .chrome__link { display: none; }
+}
+
+/* ---------- the sideways story ---------- */
+/* overflow: clip, not hidden: hidden boxes are still programmatically scrollable, so focusing a
+   button inside a transformed panel made the browser scroll #story/.panel sideways and desync
+   every trigger. clip cannot scroll. */
+.story { position: relative; height: 100vh; height: 100svh; overflow: hidden; overflow: clip; }
+.track { position: relative; display: flex; flex-wrap: nowrap; height: 100%; will-change: transform; }
+.panel { position: relative; flex: 0 0 auto; height: 100%; min-width: 100vw; overflow: hidden; overflow: clip; }
+
+.cupstage { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+.cupstage > * { pointer-events: auto; }
+
+.scrollhint { position: fixed; right: var(--gutter); bottom: 22px; z-index: 70; margin: 0; font-family: var(--f-hand); font-weight: 600; }
+.scrollhint span { display: inline-block; animation: nudge 1.4s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateX(6px); } }
+
+/* reduced motion: no pin, no sideways. panels stack and read top to bottom. */
+html.is-static .story { height: auto; overflow: visible; }
+html.is-static .track { flex-direction: column; transform: none !important; }
+html.is-static .panel { width: 100% !important; min-height: 100vh; height: auto; }
+html.is-static .scrollhint { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

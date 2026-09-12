@@ -1,0 +1,254 @@
+/* ------------------------------------------------------------------
+   COX & KINGS. every class is .cox-*. voyager blue owns actions and
+   pointers in the fix half; sienna only marks the old site's mistakes.
+   ------------------------------------------------------------------ */
+.cox { display: flex; background: var(--paper); }
+.cox-group { position: relative; display: flex; flex: 0 0 auto; height: 100%; }
+
+/* ---------- doodle ink, local to this chapter ---------- */
+.cox .dd path { stroke-width: 2.8px; }
+.cox-world .dd path { stroke-width: 3.2px; }
+.cox .cox-halo path { fill: #fff; stroke: #fff; stroke-width: 12px; }
+.cox .cox-halo .cox-halo-line { fill: none; stroke-width: 10px; }
+.cox .cox-fillg path { stroke: none; }
+.cox .dd .cox-f-tape { fill: rgba(222, 200, 168, .88); }
+.cox .dd .cox-f-red { fill: var(--tomato); }
+.cox .dd .cox-f-sienna { fill: var(--cox-sienna); }
+.cox .dd .cox-red-ink { stroke: var(--tomato); stroke-width: 4.5px; }
+.cox .dd .cox-sienna-ink { stroke: var(--cox-sienna); }
+.cox .dd .cox-blue-ink { stroke: var(--cox-blue); stroke-width: 4px; }
+.cox .cox-t { font-family: var(--f-hand); font-weight: 600; fill: var(--ink); }
+.cox .cox-t--milk { fill: var(--milk); }
+.cox .cox-t--latte { fill: var(--latte); }
+.cox .cox-t--soft { fill: var(--ink-2); }
+.cox .cox-t--sienna { fill: var(--cox-sienna); }
+.cox .cox-t--halo { paint-order: stroke; stroke: #fff; stroke-width: 8px; stroke-linejoin: round; }
+.cox .cox-serif { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; fill: var(--cox-sienna); }
+.cox .cox-serif--big { font-style: normal; font-weight: 600; }
+
+/* ---------- title card ---------- */
+.cox-title {
+  position: relative; flex: 0 0 78vw; height: 100%; display: flex; align-items: center;
+  padding: var(--chrome-h) var(--gutter) 0 calc(var(--gutter) + 3vw);
+}
+.cox-title__in { position: relative; z-index: 1; max-width: 64vw; }
+.cox-title__crest { width: clamp(84px, 8.5vw, 140px); height: auto; margin-bottom: 2.4svh; filter: drop-shadow(0 0 0 #fff) drop-shadow(3px 4px 0 rgba(30, 20, 14, .14)); }
+.cox-title__tag { margin: 0 0 1.2svh; color: var(--ink-2); }
+.cox-title__name {
+  margin: 0; font-size: var(--t-mega); font-weight: 800; letter-spacing: -.05em; line-height: .86; white-space: nowrap;
+}
+.cox-title__est {
+  display: inline-block; vertical-align: top; margin: .1em 0 0 .25em; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-weight: 500; letter-spacing: 0; font-size: clamp(1.3rem, 2.4vw, 2.5rem); color: var(--cox-sienna);
+}
+.cox-title__what { margin: 3svh 0 1.4svh; max-width: 36ch; font-size: var(--t-m); font-weight: 500; line-height: 1.25; }
+.cox-title__role { margin: 0; color: var(--ink-2); }
+.cox-title__ring { position: absolute; right: 6vw; top: 14svh; width: clamp(200px, 26vw, 400px); height: auto; }
+.cox .dd .cox-ring { stroke: var(--crema); stroke-width: 11px; opacity: .38; }
+.cox .dd .cox-ring--thin { stroke-width: 4px; opacity: .5; }
+
+.cox-marker { margin: 0; font-family: var(--f-hand); font-weight: 700; font-size: var(--t-m); }
+.cox-marker--problem { position: absolute; right: calc(var(--gutter) + 2vw); bottom: 14svh; display: flex; align-items: center; gap: 10px; }
+.cox-marker--problem svg { width: clamp(80px, 8vw, 120px); height: auto; }
+.cox-marker--fix span { display: inline-block; color: var(--cox-blue); border-bottom: 3px solid currentColor; padding-bottom: 2px; }
+
+/* ---------- problem scenes ---------- */
+.cox-scene { position: relative; flex: 0 0 100vw; height: 100%; overflow: hidden; background: var(--latte); }
+.cox-scene .cox-world__photo { background: var(--latte); }
+.cox-world {
+  --ww: max(116vw, calc(100svh * 1.791));
+  --wh: calc(var(--ww) / 1.791);
+  position: absolute; width: var(--ww); height: var(--wh); top: calc(50% - var(--wh) / 2);
+  left: clamp(calc(100vw - var(--ww) + 8vw), calc(50vw - var(--ww) * var(--fx)), -8vw);
+}
+.cox-world__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; }
+.cox-world__art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cox-bubble { left: var(--bx); top: var(--by); margin: 0; z-index: 2; }
+
+.cox-card {
+  position: absolute; z-index: 3; left: calc(var(--gutter) + 1vw); top: calc(var(--chrome-h) + 6svh); width: min(31rem, 34vw);
+  padding: clamp(18px, 2vw, 30px); background: var(--milk); border: var(--dd-stroke) solid var(--ink);
+  border-radius: 22px 16px 26px 14px; box-shadow: 0 0 0 6px #fff, 7px 10px 0 6px rgba(30, 20, 14, .3);
+}
+.cox-card::before {
+  content: ''; position: absolute; top: -15px; left: 42%; width: 96px; height: 28px; background: rgba(222, 200, 168, .9);
+  transform: rotate(-4deg); box-shadow: 0 1px 0 rgba(30, 20, 14, .08);
+}
+.cox-card__no { margin: 0 0 .9em; color: var(--tomato-ink); }
+.cox-card__title { margin: 0 0 .45em; font-size: clamp(1.7rem, 2.9vw, 2.8rem); font-weight: 800; letter-spacing: -.035em; line-height: .98; text-wrap: balance; }
+.cox-card__body { margin: 0; max-width: 40ch; color: var(--ink-2); }
+
+/* ---------- screen frames ---------- */
+.cox-browser {
+  overflow: hidden; background: var(--milk); border: 2px solid var(--ink); border-radius: 12px;
+  box-shadow: 0 0 0 5px #fff, 8px 12px 0 5px rgba(30, 20, 14, .16);
+}
+.cox-browser__bar { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; background: var(--milk); border-bottom: 2px solid var(--ink); }
+.cox-browser__bar i { width: 9px; height: 9px; border-radius: 50%; border: 1.6px solid var(--ink); }
+.cox-browser__bar i:first-child { background: var(--tomato); }
+.cox-browser__bar span { margin-left: 10px; font-family: var(--f-mono); font-size: .68rem; color: var(--ink-2); white-space: nowrap; }
+.cox-browser img, .cox-phone img { width: 100%; height: auto; }
+.cox-phone { background: var(--ink); box-shadow: 0 0 0 5px #fff, 8px 12px 0 5px rgba(30, 20, 14, .18); }
+.cox-phone img, .cox-phone .cox-wipe { border-radius: 9% / 4.2%; overflow: hidden; }
+
+/* ---------- before / after ---------- */
+.cox-swap { position: relative; flex: 0 0 170vw; height: 100%; }
+.cox-swap__in {
+  position: absolute; left: 0; top: 0; width: 100vw; height: 100%; display: flex; align-items: center; gap: 3vw;
+  padding: calc(var(--chrome-h) + 2svh) var(--gutter) 3svh calc(var(--gutter) + 1vw);
+}
+.cox-swap__text { flex: 0 0 22vw; }
+.cox-swap__title { margin: 1.6svh 0 .5em; font-size: clamp(2rem, 3.6vw, 3.6rem); font-weight: 800; letter-spacing: -.04em; line-height: .95; }
+.cox-swap__title .caps { color: var(--cox-blue); }
+.cox-swap__sub { margin: 0; max-width: 26ch; color: var(--ink-2); }
+.cox-swap__frame--desk { flex: 0 0 auto; width: min(68vw, calc((100svh - var(--chrome-h) - 110px) * 1.6)); }
+.cox-swap__frame--mob { display: none; }
+
+.cox-wipe { position: relative; overflow: hidden; container-type: inline-size; }
+.cox-wipe figure { margin: 0; }
+/* each layer is its own stacking context, so a "before" tag can never paint over "after" */
+.cox-wipe__before { position: relative; isolation: isolate; }
+.cox-wipe__after { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.cox-wipe__afterin { position: absolute; inset: 0; isolation: isolate; }
+.cox-marks { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.cox-wipe__before .cox-ink path { stroke: var(--cox-sienna); }
+.cox-wipe__after .cox-ink path { stroke: var(--cox-blue); }
+.cox .cox-marks path { stroke-width: 3px; }
+.cox-tag {
+  position: absolute; z-index: 1; font-family: var(--f-hand); font-weight: 600; font-size: 1.5cqw; line-height: 1.15;
+  padding: .35em .6em; color: var(--ink); background: var(--milk); border: 2px solid var(--ink); border-radius: 12px 8px 13px 9px;
+  rotate: var(--r); box-shadow: 0 0 0 4px #fff; text-wrap: balance;
+}
+.cox-wipe__label {
+  position: absolute; left: 1.4%; bottom: 2.4%; z-index: 1; padding: .35em .7em; border-radius: 999px;
+  font-family: var(--f-mono); font-size: max(10px, 1cqw); background: var(--ink); color: var(--milk);
+}
+.cox-wipe__label--after { background: var(--cox-blue); }
+.cox-wipe__line { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.cox-wipe__line::before { content: ''; position: absolute; left: -2px; top: 0; bottom: 0; width: 4px; background: var(--ink); box-shadow: 0 0 0 3px #fff; }
+.cox-wipe__knob {
+  position: absolute; left: -23px; top: calc(50% - 23px); width: 46px; height: 46px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--milk); border: 2.6px solid var(--ink); box-shadow: 0 0 0 4px #fff; font-weight: 800; font-size: .95rem; letter-spacing: .1em;
+}
+
+/* ---------- fixes ---------- */
+.cox-fix {
+  position: relative; flex: 0 0 100vw; height: 100%; display: flex; align-items: center; gap: 3vw;
+  padding: calc(var(--chrome-h) + 1svh) var(--gutter) 2svh calc(var(--gutter) + 1vw);
+}
+.cox-fix__text { flex: 0 0 24vw; }
+.cox-fix__no { margin: 0; color: var(--cox-blue); }
+.cox-fix__title { margin: .5em 0 .45em; font-size: clamp(2rem, 3.3vw, 3.3rem); font-weight: 800; letter-spacing: -.04em; line-height: .96; text-wrap: balance; }
+.cox-fix__title .caps { color: var(--cox-blue); }
+.cox-fix__body { margin: 0; max-width: 34ch; color: var(--ink-2); }
+
+.cox-stage { flex: 0 0 auto; }
+.cox-stage__in { position: relative; width: 100%; container-type: inline-size; }
+.cox-stage--desk { width: min(64vw, calc((100svh - var(--chrome-h) - 60px) * 1.6364)); }
+.cox-stage--desk .cox-stage__in { aspect-ratio: 1800 / 1100; }
+.cox-stage--mob { display: none; }
+.cox-stage--mob .cox-stage__in { aspect-ratio: 1000 / 1500; }
+
+.cox-browser--fix { position: absolute; left: 1.111%; top: 3.636%; width: 68.889%; border-width: 1.5px; border-radius: .8cqw; }
+.cox-browser--fix .cox-browser__bar { height: 2.778cqw; padding: 0 .9cqw; gap: .35cqw; border-bottom-width: 1.5px; }
+.cox-browser--fix .cox-browser__bar i { width: .6cqw; height: .6cqw; border-width: 1px; }
+.cox-browser--fix .cox-browser__bar span { font-size: .75cqw; margin-left: .6cqw; }
+.cox-phone--fix { position: absolute; left: 63.889%; top: 30%; width: 16.667%; padding: .722%; border-radius: 2.4cqw; }
+.cox-phone--fixm { position: absolute; left: 24%; top: 25.333%; width: 52%; padding: 1.8%; border-radius: 7cqw; }
+.cox-stage__ink { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.cox .cox-pointers .cox-ink path { stroke: var(--cox-blue); stroke-width: 3.2px; }
+.cox-note {
+  position: absolute; z-index: 2; margin: 0; padding: .45em .7em; font-family: var(--f-hand); font-weight: 600; font-size: 1.85cqw; line-height: 1.2;
+  color: var(--ink); background: var(--milk); border: 2px solid var(--ink); border-radius: 14px 9px 15px 10px; rotate: var(--r);
+  box-shadow: 0 0 0 4px #fff, 3px 5px 0 4px rgba(30, 20, 14, .14); text-wrap: pretty;
+}
+.cox-note .caps { color: var(--cox-blue); }
+
+/* ---------- result + ask ---------- */
+.cox-end {
+  position: relative; flex: 0 0 100vw; height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4vw;
+  padding: calc(var(--chrome-h) + 2svh) calc(var(--gutter) + 2vw) 4svh calc(var(--gutter) + 4vw);
+}
+.cox-result__label { margin: 0 0 2svh; color: var(--ink-2); max-width: 32ch; }
+.cox-result__nums { display: flex; align-items: center; gap: 1.6vw; margin: 0; font-weight: 800; letter-spacing: -.05em; line-height: .9; }
+.cox-result__before { position: relative; font-size: clamp(3.6rem, 9vw, 9rem); color: var(--ink-2); }
+.cox-result__after { position: relative; padding: 0 .12em; font-size: clamp(5rem, 13vw, 13rem); color: var(--cox-blue); }
+.cox-result__strike { position: absolute; left: -6%; top: 22%; width: 112%; height: 56%; overflow: visible; }
+.cox-result__circle { position: absolute; left: -14%; top: -12%; width: 128%; height: 124%; overflow: visible; }
+.cox-result__arrow { width: clamp(56px, 7vw, 120px); height: auto; overflow: visible; }
+.cox-ask__title { margin: 0 0 .4em; font-size: clamp(2.2rem, 4.2vw, 4rem); font-weight: 800; letter-spacing: -.04em; line-height: .95; }
+.cox-ask__body { margin: 0 0 3.4svh; max-width: 34ch; color: var(--ink-2); font-size: var(--t-m); line-height: 1.3; }
+.cox-ask__row { display: flex; flex-wrap: wrap; gap: 18px; }
+.cox-ask__btn { background: var(--cox-blue); color: #fff; }
+.cox-ask__btn:hover { background: var(--cox-deep); }
+
+/* ---------- phones / narrow ---------- */
+@media (max-width: 860px) {
+  .cox-title { flex-basis: 100vw; align-items: flex-start; padding: calc(var(--chrome-h) + 7svh) var(--gutter) 0; }
+  .cox-title__in { max-width: none; }
+  .cox-title__name { font-size: clamp(3rem, 14.5vw, 5.5rem); }
+  .cox-title__est { display: block; margin: .3em 0 0 .1em; }
+  .cox-title__what { font-size: 1.15rem; }
+  .cox-title__ring { right: -14vw; top: auto; bottom: 16svh; width: 62vw; }
+  .cox-marker--problem { right: var(--gutter); bottom: calc(var(--cup-zone-h) - 30px); }
+
+  /* the photo world only fills the top 72% on phones, so doodles stay a
+     readable size instead of scaling with the full screen height */
+  .cox-scene { background: var(--espresso); }
+  .cox-world {
+    --ww: max(116vw, calc(72svh * 1.791)); top: 0;
+    left: clamp(calc(100vw - var(--ww) + 8vw), calc(50vw - var(--ww) * var(--fxm)), -8vw);
+    -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent);
+  }
+  .cox-bubble { left: var(--bxm); top: var(--bym); max-width: 15ch; font-size: .92rem; }
+  .cox-bubble::after { left: var(--tail-xm); }
+  .cox-a--said { display: none; }
+  .cox-card { left: 16px; right: 16px; width: auto; top: auto; bottom: calc(var(--cup-zone-h) + 12px); padding: 16px 18px 18px; }
+  .cox-card__title { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
+  .cox-card__body { font-size: .95rem; }
+
+  .cox-swap { flex-basis: 150vw; }
+  .cox-swap__in { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 14px; padding: calc(var(--chrome-h) + 10px) var(--gutter) 88px; }
+  .cox-swap__text { flex: none; }
+  .cox-swap__title { font-size: 2rem; margin: 6px 0 4px; }
+  .cox-swap__sub { font-size: .92rem; max-width: 34ch; }
+  .cox-swap__frame--desk { display: none; }
+  .cox-swap__frame--mob { display: block; flex: 1 1 0; min-height: 0; }
+  .cox-phone--swap { width: min(62vw, calc((100svh - var(--chrome-h) - 330px) * .46)); margin-inline: auto; padding: 8px; border-radius: 34px; }
+  .cox-phone--swap .cox-tag { font-size: 4.8cqw; }
+  .cox-phone--swap .cox-wipe__label { font-size: 3.6cqw; bottom: 1%; }
+
+  .cox-fix { flex-basis: 190vw; gap: 0; padding: calc(var(--chrome-h) + 8px) 0 84px; }
+  .cox-fix__text { flex: 0 0 100vw; padding: 0 var(--gutter); }
+  .cox-fix__title { font-size: clamp(1.9rem, 9vw, 2.6rem); }
+  .cox-stage--desk { display: none; }
+  .cox-stage--mob { display: block; width: min(84vw, calc((100svh - var(--chrome-h) - 100px) / 1.5)); margin-left: 2vw; }
+  .cox-note { font-size: 4.3cqw; }
+
+  .cox-end { grid-template-columns: 1fr; align-content: center; gap: 5svh; padding: calc(var(--chrome-h) + 10px) var(--gutter) 90px; }
+  .cox-result__before { font-size: 3.6rem; }
+  .cox-result__after { font-size: 5.6rem; }
+  .cox-result__arrow { width: 56px; }
+  .cox-ask__title { font-size: 2.2rem; }
+  .cox-ask__body { font-size: 1.02rem; margin-bottom: 20px; }
+}
+
+/* ---------- static / reduced motion: stack and show the final state ---------- */
+html.is-static .cox { flex-direction: column; }
+html.is-static .cox-group { flex-direction: column; height: auto; }
+html.is-static .cox-title,
+html.is-static .cox-swap,
+html.is-static .cox-fix,
+html.is-static .cox-end { flex: none; width: 100%; height: auto; min-height: 100vh; }
+html.is-static .cox-scene { flex: none; width: 100%; height: 100vh; }
+html.is-static .cox-swap__in { position: relative; width: 100%; height: auto; min-height: 100vh; }
+html.is-static .cox-wipe__after,
+html.is-static .cox-wipe__afterin { position: relative; }
+html.is-static .cox-wipe__line { display: none; }
+html.is-static .cox-title__crest { transform: rotate(-7deg); }
+html.is-static .cox-title__est { transform: rotate(-4deg); }
+@media (max-width: 860px) {
+  html.is-static .cox-fix { flex-direction: column; align-items: stretch; gap: 20px; padding-bottom: 40px; }
+  html.is-static .cox-stage--mob { margin-inline: auto; }
+  html.is-static .cox-phone--swap { width: 62vw; }
+}

@@ -1,0 +1,134 @@
+/* ------------------------------------------------------------------
+   brew. an espresso-dark stage, held still for 150vw of scroll.
+   layout is all CSS vars on .brew-stage so the arc is one-line tweaks:
+   --cup-w / --cup-cx / --cup-bottom   the big cup's footprint
+   --c{0,1,2}-x / -y                   each card's resting centre
+   ------------------------------------------------------------------ */
+#brew { background: var(--espresso); color: var(--ink-on-dark); }
+
+.brew-stage {
+  position: absolute; left: 0; top: 0; width: 100vw; height: 100%;
+  --card-w: clamp(210px, 17.5vw, 290px);
+  --cup-w: min(24vw, 40vh);
+  --cup-cx: 57vw; --cup-bottom: 3vh;
+  --c0-x: 26vw; --c0-y: 55vh;
+  --c1-x: 62.5vw; --c1-y: 28vh;
+  --c2-x: 86vw; --c2-y: 52vh;
+}
+
+.brew-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 34vw 30vh at var(--cup-cx) 74%, rgba(201, 139, 78, .30), transparent 70%),
+    radial-gradient(ellipse 60vw 50vh at 30% 10%, rgba(246, 238, 226, .05), transparent 70%);
+}
+.brew-rings { position: absolute; right: -4vw; top: 8vh; width: 34vw; opacity: .16; }
+.brew-rings path { stroke: var(--crema); stroke-width: 5px; }
+
+/* ---------- headline ---------- */
+.brew-head { position: absolute; left: var(--gutter); top: calc(var(--chrome-h) + 3vh); margin: 0; font-weight: 800; z-index: 2; }
+.brew-kicker { display: block; font-family: var(--f-hand); font-weight: 600; font-size: var(--t-m); letter-spacing: 0; margin-bottom: .2em; color: var(--latte); }
+.brew-title { display: block; font-size: clamp(2.6rem, 5.3vw, 5.4rem); line-height: .92; letter-spacing: -.035em; max-width: 8.5em; }
+.brew-title .caps { letter-spacing: -.02em; }
+.brew-title .w { padding-bottom: .1em; margin-bottom: -.1em; }
+.brew-scribble { position: absolute; left: var(--gutter); top: calc(var(--chrome-h) + 3vh + var(--t-m) * 1.5 + clamp(2.6rem, 5.3vw, 5.4rem) * 1.86); width: min(44vw, 640px); height: 22px; }
+.brew-scribble path { stroke: var(--crema); stroke-width: 4px; }
+
+/* ---------- cup anchor (the fixed cup follows this box) ---------- */
+.brew-cupspot {
+  position: absolute; width: var(--cup-w); aspect-ratio: 220 / 240;
+  left: calc(var(--cup-cx) - var(--cup-w) * 100 / 220); bottom: var(--cup-bottom);
+  pointer-events: none;
+}
+.brew-label {
+  position: absolute; margin: 0; left: calc(var(--cup-cx) - var(--cup-w) * 1.05); bottom: calc(var(--cup-bottom) + var(--cup-w) * .86);
+  font-family: var(--f-hand); font-weight: 600; font-size: clamp(.9rem, 1.1vw, 1.1rem); color: var(--latte);
+  rotate: -6deg;
+}
+.brew-label-in { display: flex; align-items: flex-start; gap: 4px; }
+.brew-label svg { width: 64px; height: auto; margin-top: 10px; }
+.brew-label path { stroke: var(--latte); }
+
+/* ---------- cards ---------- */
+.brew-cards { list-style: none; margin: 0; padding: 0; }
+.brew-slot { position: absolute; width: var(--card-w); z-index: 3; }
+.brew-slot--0 { left: calc(var(--c0-x) - var(--card-w) / 2); top: var(--c0-y); translate: 0 -50%; }
+.brew-slot--1 { left: calc(var(--c1-x) - var(--card-w) / 2); top: var(--c1-y); translate: 0 -50%; }
+.brew-slot--2 { left: calc(var(--c2-x) - var(--card-w) / 2); top: var(--c2-y); translate: 0 -50%; }
+
+.brew-card {
+  display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer;
+  border-radius: 8px; will-change: transform;
+}
+.brew-card-in {
+  display: block; background: var(--milk); color: var(--ink); padding: 10px 10px 14px;
+  border: 2.6px solid var(--ink); border-radius: 6px;
+  box-shadow: 0 0 0 6px #fff, 6px 10px 0 6px rgba(0, 0, 0, .28);
+  transition: transform .35s var(--ease-pop), box-shadow .35s var(--ease-out);
+}
+.brew-card:hover .brew-card-in, .brew-card:focus-visible .brew-card-in { transform: translateY(-8px) rotate(-1.5deg) scale(1.03); box-shadow: 0 0 0 6px #fff, 10px 18px 0 6px rgba(0, 0, 0, .3); }
+.brew-card:focus-visible { outline: none; }
+.brew-card:focus-visible .brew-card-in { outline: 3px solid var(--tomato); outline-offset: 10px; }
+.brew-card-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 3px; background: var(--latte); border: 2px solid var(--ink); }
+.brew-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.brew-card-body { display: grid; gap: 3px; padding: 10px 4px 0; }
+.brew-card-tag { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .02em; color: var(--ink-2); }
+.brew-card-name { font-weight: 800; font-size: clamp(1.35rem, 1.8vw, 1.8rem); letter-spacing: -.035em; line-height: 1; }
+.brew-card-hook { font-size: .9rem; line-height: 1.3; }
+.brew-card-go { font-family: var(--f-hand); font-weight: 700; font-size: .9rem; margin-top: 4px; color: var(--tomato-ink); }
+.brew-card-go span { display: inline-block; transition: transform .3s var(--ease-pop); }
+.brew-card:hover .brew-card-go span { transform: translateX(5px); }
+
+/* ---------- hint ---------- */
+.brew-sub {
+  position: absolute; left: var(--gutter); bottom: 8vh; margin: 0; max-width: 22ch;
+  font-family: var(--f-hand); font-weight: 600; font-size: var(--t-m); line-height: 1.25; color: var(--ink-on-dark);
+}
+.brew-sub-arrow { position: absolute; left: 100%; top: -30px; width: 58px; margin-left: 8px; }
+.brew-sub-arrow path { stroke: var(--latte); }
+
+/* ---------- portrait phones ---------- */
+@media (max-width: 860px) and (orientation: portrait) {
+  .brew-stage {
+    --card-w: 31vw;
+    --cup-w: min(50vw, 26vh); --cup-cx: 50vw; --cup-bottom: 12vh;
+    --c0-x: 18.5vw; --c0-y: 51vh;
+    --c1-x: 50vw;   --c1-y: 44vh;
+    --c2-x: 81.5vw; --c2-y: 51vh;
+  }
+  .brew-title { font-size: clamp(2.2rem, 10.5vw, 3.4rem); }
+  .brew-kicker { font-size: 1rem; }
+  .brew-scribble { top: calc(var(--chrome-h) + 3vh + 1.5rem + clamp(2.2rem, 10.5vw, 3.4rem) * 1.86); width: 70vw; }
+  .brew-card-in { padding: 5px 5px 8px; border-width: 2px; box-shadow: 0 0 0 4px #fff, 3px 6px 0 4px rgba(0, 0, 0, .28); }
+  .brew-card-media { aspect-ratio: 1 / 1; border-width: 1.5px; }
+  .brew-card-body { padding: 6px 2px 0; gap: 2px; }
+  .brew-card-tag { font-size: .5rem; }
+  .brew-card-name { font-size: .98rem; }
+  .brew-card-hook { font-size: .68rem; line-height: 1.25; }
+  .brew-card-go { font-size: .7rem; }
+  .brew-label { display: none; }
+  .brew-rings { width: 70vw; top: auto; bottom: 20vh; }
+  /* under the title, above the arc */
+  .brew-sub { left: 16px; right: 16px; bottom: auto; top: calc(var(--chrome-h) + 3vh + 1.5rem + clamp(2.2rem, 10.5vw, 3.4rem) * 1.86 + 24px); max-width: none; font-size: .85rem; }
+  .brew-sub-arrow { display: none; }
+}
+
+/* ---------- static / reduced motion: title, then the cards in a row ---------- */
+html.is-static #brew { min-height: 100vh; }
+html.is-static .brew-stage { position: relative; width: auto; height: auto; padding: calc(var(--chrome-h) + 40px) var(--gutter) 80px; display: grid; gap: 28px; }
+html.is-static .brew-head, html.is-static .brew-sub, html.is-static .brew-label, html.is-static .brew-scribble { position: static; }
+html.is-static .brew-scribble { display: none; }
+html.is-static .brew-label { display: none; }
+html.is-static .brew-sub { max-width: none; }
+html.is-static .brew-sub-arrow { display: none; }
+html.is-static .brew-cupspot { position: absolute; right: var(--gutter); left: auto; top: calc(var(--chrome-h) + 24px); bottom: auto; width: clamp(110px, 16vw, 200px); }
+html.is-static .brew-cards { display: flex; flex-wrap: wrap; gap: 40px 32px; padding-top: 16px; }
+html.is-static .brew-slot { position: relative; left: auto; top: auto; translate: none; width: clamp(220px, 26vw, 320px); }
+html.is-static .brew-slot--0 .brew-card { transform: rotate(-3deg); }
+html.is-static .brew-slot--1 .brew-card { transform: rotate(1.5deg); }
+html.is-static .brew-slot--2 .brew-card { transform: rotate(3deg); }
+@media (max-width: 860px) {
+  /* phones: the static cup would sit on "CAFFEINATION", so it tucks into the corner above it */
+  html.is-static .brew-cupspot { width: 64px; top: calc(var(--chrome-h) + 4px); right: 16px; }
+  html.is-static .brew-stage { padding-top: calc(var(--chrome-h) + 64px); }
+}

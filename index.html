@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>khushi saluja · designs over coffee</title>
+  <meta name="description" content="khushi saluja, ui/ux + product designer. a sideways story told over one cup of coffee." />
+  <meta name="theme-color" content="#F3EBDD" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>" />
+</head>
+<body>
+  <a class="skip" href="#outro">skip to contact</a>
+
+  <!-- chrome: owned by main.js / base.css -->
+  <header class="chrome" id="chrome">
+    <a class="chrome__logo" href="#intro" data-go="intro">khushi<span aria-hidden="true">.</span></a>
+    <nav class="chrome__nav" aria-label="chapters">
+      <ol id="chapters"></ol>
+    </nav>
+    <div class="chrome__end">
+      <a class="chrome__link" id="resumeLink" target="_blank" rel="noreferrer">resume</a>
+      <a class="chrome__cta" id="helloLink">say hi</a>
+    </div>
+  </header>
+
+  <!-- the traveling cup lives above the track; owned by sections/cup.js -->
+  <div class="cupstage" id="cupstage" aria-hidden="true"></div>
+
+  <main id="story" class="story">
+    <div id="track" class="track">
+      <section class="panel" id="intro"  data-chapter="hi"          aria-label="about khushi"></section>
+      <section class="panel" id="brew"   data-chapter="the work"    aria-label="selected work"></section>
+      <section class="panel" id="tally"  data-chapter="tally"       aria-label="tally case study"></section>
+      <section class="panel" id="cox"    data-chapter="cox &amp; kings" aria-label="cox and kings case study"></section>
+      <section class="panel" id="pawnet" data-chapter="pawnet"      aria-label="pawnet case study"></section>
+      <section class="panel" id="outro"  data-chapter="say hi"      aria-label="contact"></section>
+    </div>
+  </main>
+
+  <p class="scrollhint" id="scrollhint" aria-hidden="true">scroll <span>→</span></p>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
