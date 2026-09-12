@@ -22,9 +22,9 @@ export const INTRO = {
     'ui/ux + product designer',
     'engineering student @ thapar',
     '3 internships, 3 hackathon wins',
-    'free from jan 2027',
+    'looking for opportunities',
   ],
-  bubble: 'shh, reading the news. (it’s about figma.)',
+  bubble: 'shh, reading the news. (bad onboarding made the front page. again.)',
   tableDoodles: ['sticky note: “fix the onboarding”', 'pen', 'tiny sketchbook'],
   side: 'when i’m not designing: stargazing, doodling over coffee, or losing to my dog nawab.',
 };
@@ -61,10 +61,10 @@ export const TALLY = {
     {
       id: 'name',
       bg: '/img/scenes/tally-counter.jpg',
-      title: '“bhaiya, naam kya aa raha hai?”',
+      title: '“bhaiya, naam kya hai aapka?”',
       body: 'the only fraud check at a shop is asking the shopkeeper to read his own name back to you. scammers love that.',
-      bubble: 'bhaiya, naam kya aa raha hai?',
-      reply: 'haan haan, aa gaya 👍',
+      bubble: 'bhaiya… rajesh?',
+      reply: 'haan haan, rajesh 👍',
     },
     {
       id: 'rewards',
@@ -160,7 +160,7 @@ export const COX = {
       pointers: ['“max 18 · relaxed pace · veg and jain meals”', 'brand blue owns every action, one colour to remember'],
     },
   ],
-  result: { before: '5.9', after: '8+', label: 'buyer panel score, out of 10, before → after' },
+  result: { before: '5.9', after: '8+', label: 'buyer panel score out of 10, averaged across first impression, findability, pricing clarity, trust + reviews, calls to action, mobile, visuals and readability. before → after' },
   cta: 'ask for a walkthrough',
 };
 
@@ -200,7 +200,7 @@ export const PAWNET = {
       title: 'the reporter sees *every* step',
       body: 'reported → assigned → on route → transport → rescued. no more “did anyone go?”',
       screens: ['/img/pawnet/detail.png', '/img/pawnet/report.png'],
-      pointers: ['otp-verified reports, fewer fake alerts', 'five roles, each with its own flow'],
+      pointers: ['otp-verified reports, fewer fake alerts', 'five roles, each with its own flow', 'reporters: no login, just report. regulars: alerts + a rescue community'],
     },
     {
       id: 'lost',

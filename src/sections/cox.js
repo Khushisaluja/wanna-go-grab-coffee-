@@ -300,8 +300,8 @@ const NEW = {
   alt: 'the redesigned homepage: one search bar asking where, who and when, the 4.9 rating from 2,400+ verified reviews right under it, and a talk to an expert button in the header',
   marks: [
     { c: [1128, 38, 90, 26], note: 'a human, one click away', at: [66, 11.5, 22], from: [1010, 100], to: [1080, 64] },
-    { c: [355, 585, 330, 36], note: 'where, who, when. one button.', at: [58, 63, 25], from: [720, 520], to: [660, 566] },
-    { c: [180, 663, 150, 20], note: '4.9, and where it came from', at: [31, 82.6, 29], from: [384, 668], to: [344, 666] },
+    { c: [355, 585, 330, 36], note: 'where, who, when. one button. quick, easy, not overwhelming.', at: [58, 63, 25], from: [720, 520], to: [660, 566] },
+    { c: [180, 663, 150, 20], note: '4.9, and where it came from (click to view reviews)', at: [31, 82.6, 29], from: [384, 668], to: [344, 666] },
   ],
 };
 const OLD_M = {
@@ -318,8 +318,8 @@ const NEW_M = {
   alt: 'the redesigned homepage on a phone: where, who and when stacked above one blue search button, with the 4.9 rating and review count under it',
   vb: '0 0 520 1125',
   marks: [
-    { c: [260, 518, 236, 118], note: 'three fields, one button', at: [14, 29.5, 72], from: [300, 360], to: [300, 394] },
-    { c: [230, 718, 212, 30], note: '4.9 + its source', at: [30, 69, 56], from: [300, 806], to: [290, 752] },
+    { c: [260, 518, 236, 118], note: 'three fields, one button. quick + easy', at: [14, 29.5, 72], from: [300, 360], to: [300, 394] },
+    { c: [230, 718, 212, 30], note: '4.9 + its source (click to view reviews)', at: [30, 69, 56], from: [300, 806], to: [290, 752] },
   ],
 };
 

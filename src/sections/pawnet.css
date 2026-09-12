@@ -252,6 +252,9 @@
 .pawnet-note--0 .pawnet-arrow { margin: 6px 0 0 40%; }
 .pawnet-note--1 { right: 0; bottom: 8%; flex-direction: column-reverse; text-align: right; }
 .pawnet-note--1 .pawnet-arrow { margin: 0 0 6px 0; align-self: flex-start; }
+/* a general note about the roles, not pointing at one spot: top-right, no arrow */
+.pawnet-note--2 { right: 0; top: 4%; text-align: right; rotate: 2deg; }
+.pawnet-note--2 .pawnet-arrow { display: none; }
 
 /* illustrations */
 .pawnet-illo { margin-top: 30px; }
@@ -366,6 +369,8 @@
     bottom: calc(var(--cup-zone-h) + 72px); flex-direction: row-reverse; align-items: flex-start; gap: 4px;
   }
   .pawnet-note--1 .pawnet-arrow { margin: 0; width: 56px; height: 40px; flex: none; }
+  /* phones: tucked under the top note, still clear of the phones' headers */
+  .pawnet-note--2 { left: calc(var(--gutter) + 40px); right: calc(var(--gutter) + 6px); width: auto; top: calc(var(--chrome-h) + 84px); rotate: 1.5deg; }
   .pawnet-note__text { font-size: .95rem; flex: 1 1 auto; min-width: 0; }
   .pawnet-sol + .pawnet-sol::before { display: none; }
   .pawnet-stop__label { font-size: .58rem; }

@@ -169,7 +169,7 @@
   position: relative; flex: 0 0 100vw; height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4vw;
   padding: calc(var(--chrome-h) + 2svh) calc(var(--gutter) + 2vw) 4svh calc(var(--gutter) + 4vw);
 }
-.cox-result__label { margin: 0 0 2svh; color: var(--ink-2); max-width: 32ch; }
+.cox-result__label { margin: 0 0 2svh; color: var(--ink-2); max-width: 58ch; }
 .cox-result__nums { display: flex; align-items: center; gap: 1.6vw; margin: 0; font-weight: 800; letter-spacing: -.05em; line-height: .9; }
 .cox-result__before { position: relative; font-size: clamp(3.6rem, 9vw, 9rem); color: var(--ink-2); }
 .cox-result__after { position: relative; padding: 0 .12em; font-size: clamp(5rem, 13vw, 13rem); color: var(--cox-blue); }
