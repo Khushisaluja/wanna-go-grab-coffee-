@@ -24,7 +24,7 @@ export const INTRO = {
     'looking for opportunities', // 3rd tag = the dark one (intro.css nth-child(3))
     'engineering student @ thapar',
   ],
-  bubble: 'shh, reading the news. (forming opinions i wasn’t asked for)',
+  bubble: 'shh, reading the news. (because ignorance is apparently not bliss)',
   tableDoodles: ['sticky note: “scroll →”', 'pen', 'tiny sketchbook'],
   side: 'when i’m not designing: stargazing, doodling over coffee, or losing to my dog nawab.',
 };
