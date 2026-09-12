@@ -17,11 +17,12 @@ html.is-static .outro-scene { position: relative; min-height: 100vh; padding-bot
 .outro-hi-say { font-size: var(--t-l); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
 .outro-hi:hover, .outro-hi:focus-visible { background: #000; }
 .outro-link { font-size: 1rem; }
-.outro-copy { gap: .5em; }
+/* "copybtn", not "copy": .outro-copy is already the text column */
+.outro-copybtn { gap: .5em; }
 .outro-copy-ic { width: 18px; height: 18px; flex: none; }
 .outro-copy-ic rect, .outro-copy-ic path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .outro-copy-label { min-width: 8.2ch; text-align: left; } /* "copy email" ↔ "copied! ✓" without the row jumping */
-.outro-copy.is-copied { background: var(--ink); color: var(--milk); }
+.outro-copybtn.is-copied { background: var(--ink); color: var(--milk); }
 .outro-also { margin: 0; font-size: var(--t-small); color: var(--ink-2); max-width: 46ch; }
 
 .outro-polaroid {
