@@ -58,9 +58,10 @@ const STICKY = `
   <path class="dd-halo" d="M8 10 L 108 4 L 112 94 L 30 104 L 12 90 Z"/>
   <path class="dd-fill dd-draw" d="M9 11 L 107 5 L 111 93 L 31 103 L 13 89 Z"/>
   <path class="dd-draw" d="M13 89 L 29 86 L 31 103"/>
-  <text class="intro-sticky-t" x="20" y="38" transform="rotate(-3 60 50)">fix the</text>
-  <text class="intro-sticky-t" x="14" y="63" transform="rotate(-3 60 50)" textLength="88" lengthAdjust="spacingAndGlyphs">onboarding</text>
-  <path class="dd-draw" d="M22 74 C 44 70, 70 72, 94 66" transform="rotate(-3 60 50)"/>
+  <text class="intro-sticky-t intro-sticky-t--big" x="60" y="46" text-anchor="middle" transform="rotate(-3 60 50)">scroll</text>
+  <!-- sideways arrow: the story moves right -->
+  <path class="dd-draw" d="M20 70 C 42 64, 66 72, 94 66" transform="rotate(-3 60 50)"/>
+  <path class="dd-draw" d="M82 57 L 95 66 L 83 76" transform="rotate(-3 60 50)"/>
 </svg>`;
 
 const SPARKS = `

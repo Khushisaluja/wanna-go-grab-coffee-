@@ -25,7 +25,7 @@ export const INTRO = {
     'engineering student @ thapar',
   ],
   bubble: 'shh, reading the news.',
-  tableDoodles: ['sticky note: “fix the onboarding”', 'pen', 'tiny sketchbook'],
+  tableDoodles: ['sticky note: “scroll →”', 'pen', 'tiny sketchbook'],
   side: 'when i’m not designing: stargazing, doodling over coffee, or losing to my dog nawab.',
 };
 

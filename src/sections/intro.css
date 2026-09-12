@@ -71,6 +71,7 @@ html.is-static .intro-scene { position: relative; height: 100vh; height: 100svh;
   top: calc(var(--intro-table-y) * 100%); translate: 0 -290%;
 }
 .intro-sticky-t { font-family: var(--f-hand); font-weight: 700; font-size: 17px; fill: var(--ink); }
+.intro-sticky-t--big { font-size: 25px; }
 .intro-doodles .dd--sticker .dd-halo { fill: #fff; }
 
 /* up and to the left of her head, in the glass wall, tail pointing at her */
