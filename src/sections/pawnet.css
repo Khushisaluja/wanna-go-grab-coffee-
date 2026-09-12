@@ -358,9 +358,13 @@
   .pawnet-phone { height: min(50vh, 440px); }
   .pawnet-phone--1 { margin-left: -24%; margin-top: 8vh; }
   .pawnet-note { width: calc(100% - 2 * var(--gutter)); }
-  .pawnet-note--0 { left: var(--gutter); top: calc(var(--chrome-h) + 8px); flex-direction: row; align-items: flex-end; gap: 4px; }
+  .pawnet-note--0 { left: var(--gutter); right: calc(var(--gutter) + 6px); width: auto; top: calc(var(--chrome-h) + 8px); flex-direction: row; align-items: flex-end; gap: 4px; }
   .pawnet-note--0 .pawnet-arrow { margin: 0; width: 56px; height: 40px; flex: none; }
-  .pawnet-note--1 { right: var(--gutter); bottom: 82px; flex-direction: row-reverse; align-items: flex-start; gap: 4px; }
+  /* lifted clear of the parked cup + nav pill, and kept out of the cup's column */
+  .pawnet-note--1 {
+    left: calc(var(--cup-zone-w) - 20px); right: calc(var(--gutter) + 6px); width: auto;
+    bottom: calc(var(--cup-zone-h) + 72px); flex-direction: row-reverse; align-items: flex-start; gap: 4px;
+  }
   .pawnet-note--1 .pawnet-arrow { margin: 0; width: 56px; height: 40px; flex: none; }
   .pawnet-note__text { font-size: .95rem; flex: 1 1 auto; min-width: 0; }
   .pawnet-sol + .pawnet-sol::before { display: none; }

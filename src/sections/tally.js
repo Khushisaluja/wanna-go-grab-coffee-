@@ -563,25 +563,18 @@ export function motion(ctx, el) {
   gsap.set(afterWords, { yPercent: 110 });
   gsap.set($('.tally-ink', turnEl), { autoAlpha: 0 });
   gsap.set(pen, { autoAlpha: 0 });
+  /* timeline spans exactly 1.0 of a 40vw hold: scribble 0–.62, line lands
+     .64–.88, a short .12 beat to read it. no empty tail. */
   const turnTl = ctx.tl(turnEl, { start: 'left left', end: 'right right', scrub: .6, invalidateOnRefresh: true });
   turnTl
-    .fromTo($('.tally-turn-before', turnEl), { autoAlpha: 1, rotation: -3 }, { autoAlpha: 0, rotation: -8, y: -30, duration: .08 }, .02)
+    .fromTo($('.tally-turn-before', turnEl), { autoAlpha: 1, rotation: -3 }, { autoAlpha: 0, rotation: -8, y: -30, duration: .1 }, .02)
     .to(pen, { autoAlpha: 1, duration: .02 }, 0)
-    .fromTo(state, { p: 0 }, { p: 1, duration: .55, ease: 'none', onUpdate: () => { scrib.style.strokeDashoffset = `${len * (1 - state.p)}`; place(state.p); } }, 0)
-    .to($('.tally-ink', turnEl), { autoAlpha: 1, duration: .05 }, .5)
-    .to(pen, { autoAlpha: 0, x: '+=120', y: '-=80', duration: .06 }, .55)
-    .to(afterWords, { yPercent: 0, stagger: .012, duration: .14, ease: 'power3.out' }, .6)
-    .to({}, { duration: .2 });
+    .fromTo(state, { p: 0 }, { p: 1, duration: .62, ease: 'none', onUpdate: () => { scrib.style.strokeDashoffset = `${len * (1 - state.p)}`; place(state.p); } }, 0)
+    .to($('.tally-ink', turnEl), { autoAlpha: 1, duration: .05 }, .57)
+    .to(pen, { autoAlpha: 0, x: '+=120', y: '-=80', duration: .06 }, .62)
+    .to(afterWords, { yPercent: 0, stagger: .014, duration: .16, ease: 'power3.out' }, .64)
+    .to({}, { duration: .12 }, .88);
   scrib.style.strokeDashoffset = `${len}`;
-
-  /* ---- dark header while obsidian sits under it */
-  const chrome = document.getElementById('chrome');
-  const endEl = $('.tally-end', el);
-  ctx.st({
-    trigger: turnEl, start: () => `left -${Math.round(innerWidth * 0.22)}px`,
-    endTrigger: endEl, end: 'right left',
-    onToggle: (s) => chrome?.classList.toggle('is-dark', s.isActive),
-  });
 
   /* ---- solutions */
   q('.tally-sol').forEach((sol) => {
@@ -599,11 +592,15 @@ export function motion(ctx, el) {
     ctx.tl(sol, { start: 'left right', end: 'right left', scrub: true, invalidateOnRefresh: true })
       .fromTo(shotsP, { x: (k) => 40 + k * 36 }, { x: (k) => -(40 + k * 36), ease: 'none' });
 
-    const tl = ctx.tl(sol, { start: 'left 62%', toggleActions: 'play none none none' });
+    /* fires while the panel is still sliding in, and the phones reach full
+       opacity in .4s (the move keeps settling after) so a jump never lands
+       on half-faded screens */
+    const tl = ctx.tl(sol, { start: 'left 78%', toggleActions: 'play none none none' });
     tl.to(words, { yPercent: 0, duration: .9, stagger: .035, ease: 'expo.out' }, 0)
       .fromTo(q('.tally-kicker, .tally-sol-body, .tally-pointers', sol), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: .7, stagger: .1, ease: 'power3.out' }, .15)
-      .fromTo(shots, { autoAlpha: 0, x: 140, y: 30, rotation: (k) => +shots[k].dataset.rot + 9 },
-        { autoAlpha: 1, x: 0, y: 0, rotation: (k) => +shots[k].dataset.rot, duration: 1.1, stagger: .13, ease: 'expo.out' }, .1)
+      .to(shots, { autoAlpha: 1, duration: .4, stagger: .1, ease: 'power1.out' }, .05)
+      .fromTo(shots, { x: 140, y: 30, rotation: (k) => +shots[k].dataset.rot + 9 },
+        { x: 0, y: 0, rotation: (k) => +shots[k].dataset.rot, duration: 1.1, stagger: .13, ease: 'expo.out' }, .05)
       .fromTo(pins, { scale: 0 }, { scale: 1, duration: .4, stagger: .1, ease: 'back.out(3)' }, .8)
       .add(() => prepDraw(notePaths), .0)
       .to(notePaths, { strokeDashoffset: 0, duration: .45, stagger: .08, ease: 'power2.inOut', onComplete: () => gsap.set(notePaths, { clearProps: 'strokeDasharray,strokeDashoffset' }) }, .85)

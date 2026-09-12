@@ -561,9 +561,15 @@ export function motion(ctx, el) {
 
   /* ---------- end: paw prints walk you to the button */
   const e = q('.pawnet-end');
-  ctx.tl(e, { start: 'left 70%', toggleActions: 'play none none reverse' })
-    .fromTo(qa('.pawnet-end__step', e), { autoAlpha: 0, scale: .4 }, { autoAlpha: 1, scale: 1, duration: .3, stagger: .14, ease: 'back.out(3)' }, 0)
-    .fromTo(qa('.pawnet-end__inner > *', e), { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, stagger: .1, ease: 'power3.out' }, .5);
+  /* fires the moment the card's edge enters and is done in ~0.6s, so the
+     button is never mid-fade once the card is on screen (even via a nav glide).
+     no reverse: scrolling back never greys the cta out again. */
+  /* the cta never fades: a nav glide crosses the whole card in under a second,
+     so any opacity tween on it reads as a greyed-out button. it only slides. */
+  ctx.tl(e, { start: 'left 150%', toggleActions: 'play none none none' })
+    .fromTo(qa('.pawnet-end__inner > :not(.pawnet-end__actions, .pawnet-end__next)', e), { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4, stagger: .05, ease: 'power3.out' }, 0)
+    .fromTo(qa('.pawnet-end__actions, .pawnet-end__next', e), { y: 18 }, { y: 0, duration: .5, stagger: .05, ease: 'power3.out' }, .05)
+    .fromTo(qa('.pawnet-end__step', e), { autoAlpha: 0, scale: .4 }, { autoAlpha: 1, scale: 1, duration: .25, stagger: .07, ease: 'back.out(3)' }, 0);
 
   ctx.wobble(qa('.pawnet-polaroid__doodle svg'), { rot: 4, y: 3, dur: 2.2 });
 }

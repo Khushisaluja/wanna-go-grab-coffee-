@@ -65,7 +65,8 @@ export function makeCtx({ hTween, reduced, lenis }) {
         p.style.strokeDashoffset = reduced ? '0' : `${len}`;
       });
       const tl = gsap.timeline();
-      if (!reduced) tl.to(paths, { strokeDashoffset: 0, duration, stagger, ease });
+      /* an empty list makes GSAP warn "target not found"; a doodle with no .dd-draw paths is fine */
+      if (!reduced && paths.length) tl.to(paths, { strokeDashoffset: 0, duration, stagger, ease });
       return tl;
     },
 

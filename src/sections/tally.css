@@ -1,5 +1,5 @@
 /* tally section styles — every class is prefixed .tally- */
-.tally { --tally-cream: #F6EEE2; --tally-mute: #B7B09F; --tally-title-w: 70vw; --tally-end-w: 60vw; background: var(--paper); }
+.tally { --tally-cream: #F6EEE2; --tally-mute: #B7B09F; --tally-title-w: 60vw; --tally-end-w: 54vw; background: var(--paper); }
 .tally-row { display: flex; flex-wrap: nowrap; height: 100%; }
 .tally-group { display: flex; flex-wrap: nowrap; height: 100%; flex: 0 0 auto; }
 .tally-sub { position: relative; flex: 0 0 auto; height: 100%; overflow: hidden; }
@@ -127,7 +127,7 @@
   display: flex; align-items: center; justify-content: center; gap: 3vw;
 }
 .tally-sol--duo { --shot-h: min(58vh, 560px); }
-.tally-sol--trio { --shot-h: min(47vh, 460px); }
+.tally-sol--trio { --shot-h: min(52vh, 500px); }
 .tally-sol--trio .tally-stage { gap: 2.2vw; }
 .tally-shot-p { position: relative; flex: 0 0 auto; margin-top: calc(var(--lift) * 2); }
 .tally-shot { position: relative; margin: 0; height: var(--shot-h); aspect-ratio: 392 / 832; }
