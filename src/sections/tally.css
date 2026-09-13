@@ -205,7 +205,7 @@
   .tally-card-title { font-size: 1.5rem; margin-bottom: .5rem; }
   .tally-card-body { font-size: .9rem; line-height: 1.38; }
 
-  .tally-turn-before { left: 20px; font-size: 2rem; }
+  .tally-turn-before { left: 20px; right: 20px; font-size: 2rem; } /* right: wraps instead of running past the edge */
   .tally-turn-after { left: 20px; right: 20px; font-size: 3rem; }
   .tally-pen { width: 70px; }
 

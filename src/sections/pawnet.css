@@ -378,6 +378,25 @@
 
   .pawnet-end { padding: calc(var(--chrome-h) + 30px) var(--gutter) 120px; align-items: center; }
   .pawnet-end__trail { top: calc(var(--chrome-h) + 16px); left: var(--gutter); margin-top: 0; width: 60vw; height: 90px; }
+
+  /* ---- overlap fixes (phones only) ---- */
+  /* problem 02: "oh… you're here too?" sat under the card */
+  .pawnet-photo .pawnet-anchor--oops { top: calc(.42 * 100%); }
+  /* pivot: the stamp covered the case name; the case-locked rows ran under the parked cup */
+  .pawnet-case__stamp { top: -36px; right: -6px; font-size: 1.05rem; padding: 1px 9px; }
+  .pawnet-pivot__stage { padding-bottom: calc(var(--cup-zone-h) + 10px); }
+  /* fix 02 has a third note at the top: start the phones below it instead of under it */
+  .pawnet-sol__shots:has(.pawnet-note--2) { padding-top: calc(var(--chrome-h) + 180px); }
+  .pawnet-sol__shots:has(.pawnet-note--2) .pawnet-phone { height: min(42vh, 380px); }
+  @media (max-width: 380px) {
+    /* fix 03: the 87% readout and legend ran past the right edge */
+    .pawnet-meter { grid-template-columns: 124px 1fr; column-gap: 12px; }
+    .pawnet-meter__legend { flex-wrap: wrap; gap: 2px 10px; }
+  }
+  @media (max-height: 800px) {
+    /* end card: on short phones the centred copy rises into the paw trail, and it's decoration, so it goes */
+    .pawnet-end__trail { display: none; }
+  }
 }
 
 /* ================================================================ reduced motion / ?static: stacked, final state */

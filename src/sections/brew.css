@@ -112,6 +112,10 @@
   .brew-sub { left: 16px; right: 16px; bottom: auto; top: calc(var(--chrome-h) + 3vh + 1.5rem + clamp(2.2rem, 10.5vw, 3.4rem) * 1.86 + 24px); max-width: none; font-size: .85rem; }
   .brew-sub-arrow { display: none; }
 }
+/* shorter phones: the two-line hint runs into the middle card, so the arc sits a little lower */
+@media (max-width: 860px) and (orientation: portrait) and (max-height: 800px) {
+  .brew-stage { --c0-y: 56vh; --c1-y: 50vh; --c2-y: 56vh; }
+}
 
 /* ---------- static / reduced motion: title, then the cards in a row ---------- */
 html.is-static #brew { min-height: 100vh; }

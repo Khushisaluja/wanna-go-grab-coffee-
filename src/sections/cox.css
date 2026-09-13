@@ -203,6 +203,12 @@
   .cox-bubble { left: var(--bxm); top: var(--bym); max-width: 15ch; font-size: .92rem; }
   .cox-bubble::after { left: var(--tail-xm); }
   .cox-a--said { display: none; }
+  /* problem 02: the "reach a person via" note sits past the right edge of a phone crop (the card says it already).
+     problem 03: the three old-site age tags end up under the card, so they go too. */
+  #cox-p-no-human .cox-a--note, #cox-p-no-human .cox-strikes, #cox-p-buried .cox-tags { display: none; }
+  @media (max-width: 380px) {
+    #cox-p-buried .cox-bubble { translate: -18px 0; } /* the explorer's question clipped on 360px phones */
+  }
   .cox-card { left: 16px; right: 16px; width: auto; top: auto; bottom: calc(var(--cup-zone-h) + 12px); padding: 16px 18px 18px; }
   .cox-card__title { font-size: clamp(1.4rem, 6.4vw, 1.9rem); }
   .cox-card__body { font-size: .95rem; }

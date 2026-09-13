@@ -147,5 +147,6 @@ html:not(.is-static) .intro--pre .intro-doodles { opacity: 0; }
   .intro-fact { font-size: .76rem; }
   .intro-side { font-size: .78rem; line-height: 1.35; }
   .intro-nawab { width: 70px; right: 8%; }
-  .intro-bubble { font-size: .78rem; max-width: 16ch; padding: .7em 1em; left: calc((var(--intro-head-x) - .025) * 100%); }
+  /* phones: wider (fewer lines, so shorter) and a smaller lift than desktop's -165%, which put the bubble under the intro card */
+  .intro-bubble { font-size: .78rem; max-width: 21ch; padding: .7em 1em; left: calc((var(--intro-head-x) - .025) * 100%); translate: -100% -120%; }
 }
